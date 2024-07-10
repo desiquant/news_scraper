@@ -1,0 +1,16 @@
+# python
+.venv/
+*.egg-info/
+__pycache__/
+
+# scraper
+.scrapy/
+
+# local testing
+demo.ipynb
+
+# terraform
+.terraform/
+.terraform.lock.hcl
+terraform.tfvars
+*.tfstate*
