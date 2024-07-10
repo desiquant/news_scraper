@@ -5,6 +5,7 @@ __pycache__/
 
 # scraper
 .scrapy/
+outputs*/
 
 # local testing
 demo.ipynb

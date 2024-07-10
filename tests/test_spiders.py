@@ -1,6 +1,9 @@
-from scrapy.crawler import CrawlerProcess
+import pandas as pd
+import pytest
+from scrapy.crawler import CrawlerProcess, Spider
 from scrapy.utils.project import get_project_settings
-from ..news_scraper.spiders import (
+
+from news_scraper.spiders import (
     BusinessStandardSpider,
     BusinessTodaySpider,
     EconomicTimesSpider,
@@ -12,30 +15,53 @@ from ..news_scraper.spiders import (
     NDTVProfitSpider,
     News18Spider,
     OutlookIndiaSpider,
-    TheHinduSpider,
     TheHinduBusinessLineSpider,
+    TheHinduSpider,
     ZeeNewsSpider,
 )
 
-settings = get_project_settings()
 
-# update some settings to make them test friendly
-settings.update(
-    {
-        "SKIP_URLS_IN_OUTPUT": False,  # Do not skip URLs that have already been processed
-        "CLOSESPIDER_ITEMCOUNT": 5,  # Stop after scraping 5 items
-        "CLOSESPIDER_PAGECOUNT": 5,  # Stop after crawling 10 pages
-        "CLOSESPIDER_TIMEOUT": 60,  # Stop after 60 seconds,
-        "FEED_URI": "test-output.jl",  # Save the outputs to a new temporary file
-        "HTTPCACHE_ENABLED": False,  # Do not cache requests
-    }
-)
+@pytest.fixture(params=[BusinessStandardSpider, BusinessTodaySpider])
+def spider(request):
+    return request.param
 
 
-process = CrawlerProcess(settings=settings)
+def test_spider(spider: Spider):
+    settings = get_project_settings()
+    output_file = f"outputs-test/{spider.name}.jl"
 
+    # update some settings to make them test friendly
+    settings.update(
+        {
+            "SKIP_URLS_IN_OUTPUT": False,  # Do not skip URLs that have already been processed
+            "CLOSESPIDER_ITEMCOUNT": 5,  # Stop after scraping 5 items
+            "CLOSESPIDER_PAGECOUNT": 5,  # Stop after crawling 10 pages
+            "CLOSESPIDER_TIMEOUT": 60,  # Stop after 60 seconds,
+            # Save the outputs to a new temporary file
+            "FEEDS": {output_file: {"format": "jsonlines"}},
+            "HTTPCACHE_ENABLED": True,  # Do not cache requests,
+            "LOG_FILE": "/tmp/scrapy-test-run.log",  # Prevent log from writing to stdout
+        }
+    )
 
-def test_spider():
-    spider = BusinessStandardSpider
+    # run the spider
+    process = CrawlerProcess(settings=settings)
     process.crawl(spider)
     process.start()
+
+    # check the output of the spider
+    df = pd.read_json(output_file, lines=True)
+
+    output_cols = set(df.columns)
+    required_cols = {
+        "url",
+        "title",
+        "description",
+        "author",
+        "date_published",
+        "date_modified",
+        "scrapy_scraped_at",
+        "scrapy_parsed_at",
+    }
+
+    assert output_cols == required_cols

@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="dq_news",
+    name="news_scraper",
     description="Scrapes indian market news from popular online indian ews outlets",
     version="0.1.0",
     packages=find_packages(),
@@ -11,8 +11,6 @@ setup(
         "netifaces",
         "fake-useragent",
     ],
-    long_description=open("README.md").read(),
-    long_description_content_type="text/markdown",
-    url="https://github.com/desiquant/dq_news",
+    url="https://github.com/desiquant/news_scraper",
     python_requires=">=3.6",
 )

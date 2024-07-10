@@ -8,9 +8,7 @@ CLOSESPIDER_ITEMCOUNT = 5  # Stop after scraping 5 items
 # CLOSESPIDER_PAGECOUNT = 5  # Stop after crawling 10 pages
 CLOSESPIDER_TIMEOUT = 60  # Stop after 60 seconds
 
-FEED_URI = "%(name)s-output.jl"
-FEED_FORMAT = "jsonlines"
-# FEED_EXPORT_BATCH_ITEM_COUNT = 10
+FEEDS = {"outputs/%(name)s.jl": {"format": "jsonlines"}}
 
 
 RETRY_ENABLED = True
@@ -36,7 +34,7 @@ NEWSPIDER_MODULE = "news_scraper.spiders"
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = "news_scraper (+http://www.yourdomain.com)"
 USER_AGENT = "Googlebot-News/2.1 (+http://www.google.com/bot.html)"
-# USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False

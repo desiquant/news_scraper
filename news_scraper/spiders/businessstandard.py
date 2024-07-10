@@ -1,7 +1,6 @@
-from .base import DailySitemapSpider
-from ..utils import ua
 from ..items import NewsArticleItem, NewsArticleItemLoader
-from scrapy.loader import ItemLoader
+from ..utils import ua
+from .base import DailySitemapSpider
 
 
 class BusinessStandardSpider(DailySitemapSpider):
@@ -26,7 +25,7 @@ class BusinessStandardSpider(DailySitemapSpider):
         # content
         article.add_css("title", "h1.stryhdtp::text")
         article.add_css("description", "h2.strydsc::text")
-        article.add_css("author", "span.MainStory_dtlauthinfo__u_CUx::text")
+        article.add_css("author", "span.MainStory_dtlauthinfo__u_CUx span::text")
         article.add_css("raw_content", "div.storydetail")
 
         # dates
