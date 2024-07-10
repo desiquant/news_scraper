@@ -1,7 +1,8 @@
-from scrapy.spiders import SitemapSpider, Request
 from datetime import date
-from typing import Tuple, Callable, Dict, Literal
+from typing import Callable, Dict, Literal, Tuple
+
 import pandas as pd
+from scrapy.spiders import Request, SitemapSpider
 
 
 class DailySitemapSpider(SitemapSpider):

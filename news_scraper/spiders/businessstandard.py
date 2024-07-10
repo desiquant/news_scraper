@@ -20,13 +20,17 @@ class BusinessStandardSpider(DailySitemapSpider):
     custom_settings = {"USER_AGENT": ua.random}
 
     def parse_article(self, response):
+        """
+        sample article: https://www.business-standard.com/markets/news/analysts-laud-bajaj-auto-s-cng-powered-freedom-125-bike-wary-of-adoption-124070800259_1.html
+        """
+
         article = NewsArticleItemLoader(item=NewsArticleItem(), response=response)
 
         # content
         article.add_css("title", "h1.stryhdtp::text")
         article.add_css("description", "h2.strydsc::text")
         article.add_css("author", "span.MainStory_dtlauthinfo__u_CUx span::text")
-        article.add_css("raw_content", "div.storydetail")
+        article.add_css("article_html", "div.storydetail")
 
         # dates
         article.add_css(

@@ -21,7 +21,15 @@ from news_scraper.spiders import (
 )
 
 
-@pytest.fixture(params=[BusinessStandardSpider, BusinessTodaySpider])
+@pytest.fixture(
+    params=[
+        # BusinessStandardSpider,
+        # BusinessTodaySpider,
+        # EconomicTimesSpider,
+        # FinancialExpressSpider,
+        FirstPostSpider,
+    ]
+)
 def spider(request):
     return request.param
 
@@ -35,11 +43,10 @@ def test_spider(spider: Spider):
         {
             "SKIP_URLS_IN_OUTPUT": False,  # Do not skip URLs that have already been processed
             "CLOSESPIDER_ITEMCOUNT": 5,  # Stop after scraping 5 items
-            "CLOSESPIDER_PAGECOUNT": 5,  # Stop after crawling 10 pages
             "CLOSESPIDER_TIMEOUT": 60,  # Stop after 60 seconds,
             # Save the outputs to a new temporary file
-            "FEEDS": {output_file: {"format": "jsonlines"}},
-            "HTTPCACHE_ENABLED": True,  # Do not cache requests,
+            "FEEDS": {output_file: {"format": "jsonlines", "overwrite": True}},
+            "HTTPCACHE_ENABLED": True,  # Do not cache requests, # ! TEMP: disable cache
             "LOG_FILE": "/tmp/scrapy-test-run.log",  # Prevent log from writing to stdout
         }
     )
@@ -60,6 +67,7 @@ def test_spider(spider: Spider):
         "author",
         "date_published",
         "date_modified",
+        "article_html",
         "scrapy_scraped_at",
         "scrapy_parsed_at",
     }

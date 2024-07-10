@@ -1,5 +1,7 @@
 import json
-from . base import DailySitemapSpider
+
+from ..items import NewsArticleItem, NewsArticleItemLoader
+from .base import DailySitemapSpider
 
 
 class EconomicTimesSpider(DailySitemapSpider):
@@ -19,12 +21,23 @@ class EconomicTimesSpider(DailySitemapSpider):
     sitemap_rules = [(r"/markets/", "parse_article")]
 
     def parse_article(self, response):
-        script_data = response.css("script[type='application/ld+json']::text")[1].get()
-        script_json = json.loads(script_data) if script_data else {}
+        """
+        sample article: https://economictimes.indiatimes.com/markets/stocks/news/it-stocks-in-focus-ahead-of-june-qtr-results-tcs-cyient-top-buy-which-could-give-15-18-return/articleshow/111569297.cms
+        """
 
-        yield {
-            "date": script_json.get("datePublished"),
-            "title": response.css("h1::text").get(),
-            "description": response.css("h2::text").get(),
-            "url": response.url,
-        }
+        article = NewsArticleItemLoader(item=NewsArticleItem(), response=response)
+
+        # content
+        article.add_css("title", "h1::text")
+        article.add_css("description", "h2.summary::text")
+        article.add_xpath("author", '//div[@class="auth"]//text()')
+        article.add_css("article_html", "div.article_wrap")
+
+        # dates
+        ld_data = response.css("script[type='application/ld+json']::text")[1].get()
+        ld_json = json.loads(ld_data) if ld_data else {}
+
+        article.add_value("date_published", ld_json.get("datePublished"))
+        article.add_value("date_modified", ld_json.get("dateModified"))
+
+        yield article.load_item()

@@ -3,11 +3,12 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/items.html
 
-import scrapy
-from itemloaders.processors import TakeFirst, Join, MapCompose
-from w3lib.html import remove_tags
 from datetime import datetime
+
+import scrapy
+from itemloaders.processors import Join, MapCompose, TakeFirst
 from scrapy.loader import ItemLoader
+from w3lib.html import remove_tags
 
 
 class NewsArticleItem(scrapy.Item):
@@ -20,9 +21,9 @@ class NewsArticleItem(scrapy.Item):
     date_published = scrapy.Field()
     date_modified = scrapy.Field()
 
-    # !TEMP: ignores raw_content
-    raw_content = scrapy.Field(output_processor=lambda x: None)
-    # raw_content = scrapy.Field(output_processor=Join())
+    # !TEMP: ignores article_html
+    # article_html = scrapy.Field(output_processor=lambda x: None)
+    article_html = scrapy.Field(output_processor=Join())
     # text_content = scrapy.Field(
     #     input_processor=MapCompose(remove_tags, str.strip),
     #     output_processor=Join("\n"),
