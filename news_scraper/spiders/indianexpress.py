@@ -10,9 +10,9 @@ class IndianExpressSpider(DailySitemapSpider):
         "https://indianexpress.com/sitemap.xml?yyyy={year}&mm={month}&dd={day}"
     ]
 
-    sitemap_rules = [(r"/article/business/", "parse_article")]
+    sitemap_rules = [(r"/article/business/", "parse")]
 
-    def parse_article(self, response):
+    def parse(self, response):
         """
         sample article: https://indianexpress.com/article/business/market/indian-shares-record-high-after-sensex-breaches-80000-mark-9431868/
         """

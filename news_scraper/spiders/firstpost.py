@@ -10,9 +10,9 @@ class FirstPostSpider(DailySitemapSpider):
         "https://www.firstpost.com/commonfeeds/v1/mfp/sitemap/daily/{year}-{month}-{day}.xml"
     ]
 
-    sitemap_rules = [(r"/india/", "parse_article")]
+    sitemap_rules = [(r"/india/", "parse")]
 
-    def parse_article(self, response):
+    def parse(self, response):
         """
         sample article: https://www.firstpost.com/business/rs-147-5-debited-from-your-sbi-account-heres-why-state-bank-of-india-has-done-this-11792501.html
         """

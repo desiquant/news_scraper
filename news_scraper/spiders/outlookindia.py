@@ -12,9 +12,9 @@ class OutlookIndiaSpider(DailySitemapSpider):
         "https://business.outlookindia.com/sitemap/sitemap-daily-{year}-{month}-{day}.xml",
     ]
 
-    sitemap_rules = [(r"/markets/", "parse_article")]
+    sitemap_rules = [(r"/markets/", "parse")]
 
-    def parse_article(self, response):
+    def parse(self, response):
         """
         sample article: https://business.outlookindia.com/markets/over-300-returns-in-2024-why-cochin-shipyard-continues-to-shine-at-stock-markets
         """

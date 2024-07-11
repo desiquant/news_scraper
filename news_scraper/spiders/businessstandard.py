@@ -15,11 +15,11 @@ class BusinessStandardSpider(DailySitemapSpider):
         "month": lambda d: d.strftime("%B").lower(),
     }
 
-    sitemap_rules = [(r"/markets/", "parse_article")]
+    sitemap_rules = [(r"/markets/", "parse")]
 
     custom_settings = {"USER_AGENT": ua.random}
 
-    def parse_article(self, response):
+    def parse(self, response):
         """
         sample article: https://www.business-standard.com/markets/news/analysts-laud-bajaj-auto-s-cng-powered-freedom-125-bike-wary-of-adoption-124070800259_1.html
         """

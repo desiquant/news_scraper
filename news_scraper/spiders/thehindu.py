@@ -11,9 +11,9 @@ class TheHinduSpider(DailySitemapSpider):
         "https://www.thehindu.com/sitemap/archive/all/{year}{month}{day}_2.xml",
     ]
 
-    sitemap_rules = [(r"/business/markets/", "parse_article")]
+    sitemap_rules = [(r"/business/markets/", "parse")]
 
-    def parse_article(self, response):
+    def parse(self, response):
         """
         sample article: https://www.thehindu.com/business/markets/markets-decline-in-early-trade/article68380310.ece
         """

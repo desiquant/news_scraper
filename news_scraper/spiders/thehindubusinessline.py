@@ -11,9 +11,9 @@ class TheHinduBusinessLineSpider(DailySitemapSpider):
         "https://www.thehindubusinessline.com/sitemap/archive/all/{year}{month}{day}_2.xml",
     ]
 
-    sitemap_rules = [(r"/markets/", "parse_article")]
+    sitemap_rules = [(r"/markets/", "parse")]
 
-    def parse_article(self, response):
+    def parse(self, response):
         """
         sample article: https://www.thehindubusinessline.com/markets/stock-markets/brokerage-views-on-dabur-emkay-global-and-dart-insights/article68380231.ece
         """

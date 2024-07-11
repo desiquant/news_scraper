@@ -11,11 +11,11 @@ class MoneyControlSpider(DailySitemapSpider):
         "https://www.moneycontrol.com/news/sitemap/sitemap-post-{year}-{month}.xml",
     ]
 
-    sitemap_rules = [(r"/news/business/markets/", "parse_article")]
+    sitemap_rules = [(r"/news/business/markets/", "parse")]
 
     custom_settings = {"USER_AGENT": ua.random}
 
-    def parse_article(self, response):
+    def parse(self, response):
         """
         sample article: https://www.moneycontrol.com/news/business/markets/stock-radar-power-grid-aarti-industries-zydus-lifesciences-ge-power-life-insurance-corporation-sula-vineyards-state-bank-of-india-irb-infrastructure-meson-valves-jtl-industries-in-focus-12766424.html
         """

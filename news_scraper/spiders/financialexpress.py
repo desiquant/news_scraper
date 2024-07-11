@@ -10,9 +10,9 @@ class FinancialExpressSpider(DailySitemapSpider):
         "https://www.financialexpress.com/sitemap.xml?yyyy={year}&mm={month}&dd={day}"
     ]
 
-    sitemap_rules = [(r"/market/", "parse_article")]
+    sitemap_rules = [(r"/market/", "parse")]
 
-    def parse_article(self, response):
+    def parse(self, response):
         """
         sample article: https://www.financialexpress.com/market/will-markets-crash-ahead-of-budget-is-it-the-right-time-to-book-profitsnbsp-check-key-nifty-levels-to-watch-3549556/
         """

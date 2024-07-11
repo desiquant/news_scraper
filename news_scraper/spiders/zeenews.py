@@ -16,9 +16,9 @@ class ZeeNewsSpider(DailySitemapSpider):
         "month": lambda d: d.strftime("%b").lower(),
     }
 
-    sitemap_rules = [(r"/markets/", "parse_article")]
+    sitemap_rules = [(r"/markets/", "parse")]
 
-    def parse_article(self, response):
+    def parse(self, response):
         """
         sample article: https://zeenews.india.com/markets/pharma-healthcare-stocks-top-sectoral-gainers-in-trade-2716060.html
         """

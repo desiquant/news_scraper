@@ -10,9 +10,9 @@ class NDTVProfitSpider(DailySitemapSpider):
         "https://www.ndtvprofit.com/sitemap/sitemap-daily-{year}-{month}-{day}.xml",
     ]
 
-    sitemap_rules = [(r"/markets/", "parse_article")]
+    sitemap_rules = [(r"/markets/", "parse")]
 
-    def parse_article(self, response):
+    def parse(self, response):
         """
         sample article: https://www.ndtvprofit.com/markets/stocks-to-watch-asian-paints-sula-vineyards-glenmark-pharma-power-grid
         """

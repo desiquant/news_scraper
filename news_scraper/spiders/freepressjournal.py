@@ -10,9 +10,9 @@ class FreePressJournalSpider(DailySitemapSpider):
         "https://www.freepressjournal.in/sitemap/sitemap-daily-{year}-{month}-{day}.xml",
     ]
 
-    sitemap_rules = [(r"/business/", "parse_article")]
+    sitemap_rules = [(r"/business/", "parse")]
 
-    def parse_article(self, response):
+    def parse(self, response):
         """
         sample article: https://www.freepressjournal.in/business/sbi-raises-10000-cr-via-sixth-infrastructure-bond-issuance-at-736-coupon-rate-oversubscribed-36-times
         """

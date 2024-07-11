@@ -6,13 +6,14 @@ class BusinessTodaySpider(DailySitemapSpider):
     name = "businesstoday"
 
     sitemap_frequency = "1D"
+    allowed_domains = ["businesstoday.in"]
     sitemap_patterns = [
         "https://www.businesstoday.in/rssfeeds/date-wise-story-sitemap.xml?yyyy={year}&mm={month}&dd={day}",
     ]
 
-    sitemap_rules = [(r"/markets/", "parse_article")]
+    sitemap_rules = [(r"/markets/", "parse")]
 
-    def parse_article(self, response):
+    def parse(self, response):
         """
         sample article: https://www.businesstoday.in/markets/company-stock/story/hdfc-bank-shares-down-8-from-one-year-high-should-you-enter-at-current-levels-436040-2024-07-05
         """

@@ -10,9 +10,9 @@ class News18Spider(DailySitemapSpider):
         "https://www.news18.com/commonfeeds/v1/eng/sitemap/daily/{year}-{month}-{day}.xml"
     ]
 
-    sitemap_rules = [(r"/business/", "parse_article")]
+    sitemap_rules = [(r"/business/", "parse")]
 
-    def parse_article(self, response):
+    def parse(self, response):
         """
         sample article: https://www.news18.com/business/markets/stocks-to-watch-tcs-nykaa-yes-bank-sbi-tata-elxsi-power-grid-asian-paints-and-others-8961429.html
         """
