@@ -27,7 +27,16 @@ from news_scraper.spiders import (
         # BusinessTodaySpider,
         # EconomicTimesSpider,
         # FinancialExpressSpider,
-        FirstPostSpider,
+        # FirstPostSpider,
+        # FreePressJournalSpider,
+        # IndianExpressSpider,
+        # MoneyControlSpider,
+        # NDTVProfitSpider,
+        # News18Spider,
+        # OutlookIndiaSpider,
+        # TheHinduSpider,
+        # TheHinduBusinessLineSpider,
+        ZeeNewsSpider
     ]
 )
 def spider(request):

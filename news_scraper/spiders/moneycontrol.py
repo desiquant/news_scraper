@@ -1,5 +1,6 @@
-from .base import DailySitemapSpider
+from ..items import NewsArticleItem, NewsArticleItemLoader
 from ..utils import ua
+from .base import DailySitemapSpider
 
 
 class MoneyControlSpider(DailySitemapSpider):
@@ -15,11 +16,26 @@ class MoneyControlSpider(DailySitemapSpider):
     custom_settings = {"USER_AGENT": ua.random}
 
     def parse_article(self, response):
-        yield {
-            "date": response.css(
-                'meta[property="og:article:published_time"]::attr(content)'
-            ).get(),
-            "title": response.css("h1::text").get(),
-            "description": response.css("h2::text").get(),
-            "url": response.url,
-        }
+        """
+        sample article: https://www.moneycontrol.com/news/business/markets/stock-radar-power-grid-aarti-industries-zydus-lifesciences-ge-power-life-insurance-corporation-sula-vineyards-state-bank-of-india-irb-infrastructure-meson-valves-jtl-industries-in-focus-12766424.html
+        """
+
+        article = NewsArticleItemLoader(item=NewsArticleItem(), response=response)
+
+        # content
+        article.add_css("title", "h1::text")
+        article.add_css("description", "h2.article_desc::text")
+        article.add_xpath("author", '//div[@class="article_author"]//text()')
+        article.add_css("article_html", "div.page_left_wrapper")
+
+        # dates
+        article.add_css(
+            "date_published",
+            'meta[property="og:article:published_time"]::attr(content)',
+        )
+        article.add_css(
+            "date_modified",
+            'meta[name="Last-Modified"]::attr(content)',
+        )
+
+        yield article.load_item()

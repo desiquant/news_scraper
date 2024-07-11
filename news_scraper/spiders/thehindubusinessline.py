@@ -1,4 +1,5 @@
-from . base import DailySitemapSpider
+from ..items import NewsArticleItem, NewsArticleItemLoader
+from .base import DailySitemapSpider
 
 
 class TheHinduBusinessLineSpider(DailySitemapSpider):
@@ -13,9 +14,26 @@ class TheHinduBusinessLineSpider(DailySitemapSpider):
     sitemap_rules = [(r"/markets/", "parse_article")]
 
     def parse_article(self, response):
-        yield {
-            "date": response.css('meta[itemprop="datePublished"]::attr(content)').get(),
-            "title": response.css("h1::text").get(),
-            "description": response.css("h2::text").get(),
-            "url": response.url,
-        }
+        """
+        sample article: https://www.thehindubusinessline.com/markets/stock-markets/brokerage-views-on-dabur-emkay-global-and-dart-insights/article68380231.ece
+        """
+
+        article = NewsArticleItemLoader(item=NewsArticleItem(), response=response)
+
+        # content
+        article.add_css("title", "h1::text")
+        article.add_css("description", "h2.bl-sub-text::text")
+        article.add_css("author", "div.author-name span::text")
+        article.add_css("article_html", "div.storyline")
+
+        # dates
+        article.add_css(
+            "date_published",
+            'meta[itemprop="datePublished"]::attr(content)',
+        )
+        article.add_css(
+            "date_modified",
+            'meta[itemprop="dateModified"]::attr(content)',
+        )
+
+        yield article.load_item()

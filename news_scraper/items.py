@@ -21,9 +21,8 @@ class NewsArticleItem(scrapy.Item):
     date_published = scrapy.Field()
     date_modified = scrapy.Field()
 
-    # !TEMP: ignores article_html
-    # article_html = scrapy.Field(output_processor=lambda x: None)
     article_html = scrapy.Field(output_processor=Join())
+    # article_html = scrapy.Field(output_processor=lambda x: None)
     # text_content = scrapy.Field(
     #     input_processor=MapCompose(remove_tags, str.strip),
     #     output_processor=Join("\n"),
