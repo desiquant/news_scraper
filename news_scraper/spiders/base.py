@@ -21,14 +21,17 @@ class DailySitemapSpider(SitemapSpider):
     date_range: Tuple[date | str, date | str] = ("2010-01-01", yesterday)
 
     def start_requests(self):
+        sitemap_dates = pd.date_range(
+            start=self.date_range[0],
+            end=self.date_range[1],
+            freq=self.sitemap_frequency,
+        )[::-1]
+
+        sitemaps_processed = 0
+        limit_sitemaps = self.settings.getint("CLOSESPIDER_ITEMCOUNT", 0) > 0
+
         # iterate over date range and process each sitemap
-        for dt in reversed(
-            pd.date_range(
-                start=self.date_range[0],
-                end=self.date_range[1],
-                freq=self.sitemap_frequency,
-            )
-        ):
+        for dt in sitemap_dates:
             for sitemap_pattern in self.sitemap_patterns:
                 url = sitemap_pattern.format(
                     year=self.sitemap_date_formatter.get("year", lambda x: "")(dt),
@@ -37,3 +40,10 @@ class DailySitemapSpider(SitemapSpider):
                 )
 
                 yield Request(url, self._parse_sitemap)
+
+                sitemaps_processed += 1
+
+                # limit sitemaps if item limit is set on scraper
+                if limit_sitemaps and sitemaps_processed >= 3:
+                    self.logger.info("Sitemap limit hit!")
+                    return

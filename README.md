@@ -7,24 +7,50 @@
 Run a spider. The outputs are saved to `outputs/moneycontrol.jl` in JSONlines format
 
 ```bash
-# stop after scraping 10 items. useful for testing purposes
+# scrape all market articles from "2010-01-01" till today with
 scrapy crawl moneycontrol
 
-# scrape all market articles from "2010-01-01" till today with
-TRIAL_RUN=0 scrapy crawl moneycontrol
+# trial run: stops after scraping 10 items. useful for testing purposes
+TRIAL_RUN=1 scrapy crawl moneycontrol
 ```
 
-The following websites can be crawled: `moneycontrol`,`thehindu`,`businessstandard`,`news18`,`economictimes`,`indianexpress`,`outlookindia`,`zeenews`,`thehindubusinessline`,`businesstoday`,`freepressjournal`,`firstpost`,`ndtvprofit`,`financialexpress`
+To view a list of all available spiders:
+
+```bash
+scrapy list
+
+# businessstandard
+# businesstoday
+# economictimes
+# financialexpress
+# firstpost
+# freepressjournal
+# indianexpress
+# ipfy
+# moneycontrol
+# ndtvprofit
+# news18
+# outlookindia
+# thehindu
+# thehindubusinessline
+# zeenews
+```
 
 To run all the spiders in production
 
 ```bash
+# view scraping benchmark tests performed by scrapy
+scrapy bench
 python run.py
 ```
 
 Run tests to check if spiders are still working.
 
 ```bash
+# view the parsed the article
+scrapy parse https://www.businesstoday.in/markets/stocks/story/upward-revision-in-eps-estimates-what-analysts-say-on-tcs-q1-results-stock-trading-strategy-436794-2024-07-11
+
+# intergration test all spiders
 pytest
 ```
 
@@ -53,9 +79,15 @@ The sitemaps for each website not always directly available in `robots.txt`. Goo
 
 ### TODO
 
+- Rename custom settings to `.get` to `.getint`, `getbool`, etc.
+- Enable trial run in settings
+- Separate settings into frequently modified and other
 - Do not cache recent sitemaps
 - Run the scraper as prefect flow
 - Scraping mode - Update/dump
+- While running the test, if it fails, prevent scrapy from showing the entire output
+- export PYTHONDONTWRITEBYTECODE=1
+- Do not write scrapy.log by default since benchmarket, parse, etc output should ideally be visible
 
 ### Server Checklist
 

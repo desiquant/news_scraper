@@ -23,7 +23,7 @@ class OutlookIndiaSpider(DailySitemapSpider):
         article = NewsArticleItemLoader(item=NewsArticleItem(), response=response)
 
         # content
-        article.add_css("title", "h1::text")
+        article.add_xpath("title", "//h1//text()")
         article.add_css("description", 'div[data-test-id="subheadline"]::text')
         article.add_css("author", 'a[aria-label="author-name"]::text')
         article.add_css("article_html", "div.text-story-m_gap-16__5BPKQ")

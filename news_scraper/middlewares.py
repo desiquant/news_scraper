@@ -36,7 +36,7 @@ class NewsScraperDownloaderMiddleware:
         # request.meta["proxy"] = "http://user:pass@brd.superproxy.io:22225"
 
         # use all ips available on server
-        if spider.settings.get("USE_FLOATING_IPS"):
+        if spider.settings.getbool("USE_FLOATING_IPS"):
             if self.floating_ips:
                 request.meta["bindaddress"] = (next(self.floating_ips_cycle), 0)
 
@@ -50,7 +50,7 @@ class NewsScraperDownloaderMiddleware:
         )
 
         # load already parsed urls
-        if spider.settings.get("SKIP_OUTPUT_URLS"):
+        if spider.settings.getbool("SKIP_OUTPUT_URLS"):
             # TODO: the file path should be loaded dynamically from the spider's FEEDS settings
             output_file = f"outputs/{spider.name}.jl"
             self.output_urls = get_output_urls(output_file)
