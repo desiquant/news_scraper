@@ -6,6 +6,7 @@ class TheHinduBusinessLineSpider(DailySitemapSpider):
     name = "thehindubusinessline"
 
     sitemap_frequency = "1D"
+    allowed_domains = ["thehindubusinessline.com"]
     sitemap_patterns = [
         "https://www.thehindubusinessline.com/sitemap/archive/all/{year}{month}{day}_1.xml",
         "https://www.thehindubusinessline.com/sitemap/archive/all/{year}{month}{day}_2.xml",

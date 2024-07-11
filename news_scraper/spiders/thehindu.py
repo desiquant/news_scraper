@@ -6,6 +6,7 @@ class TheHinduSpider(DailySitemapSpider):
     name = "thehindu"
 
     sitemap_frequency = "1D"
+    allowed_domains = ["thehindu.com"]
     sitemap_patterns = [
         "https://www.thehindu.com/sitemap/archive/all/{year}{month}{day}_1.xml",
         "https://www.thehindu.com/sitemap/archive/all/{year}{month}{day}_2.xml",

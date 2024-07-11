@@ -8,6 +8,7 @@ class ZeeNewsSpider(DailySitemapSpider):
     name = "zeenews"
 
     sitemap_frequency = "MS"
+    allowed_domains = ["zeenews.india.com"]
     sitemap_patterns = [
         "https://zeenews.india.com/sitemaps/sitemap-{year}-{month}.xml",
     ]

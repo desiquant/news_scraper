@@ -8,6 +8,7 @@ class OutlookIndiaSpider(DailySitemapSpider):
     name = "outlookindia"
 
     sitemap_frequency = "1D"
+    allowed_domains = ["outlookindia.com"]
     sitemap_patterns = [
         "https://business.outlookindia.com/sitemap/sitemap-daily-{year}-{month}-{day}.xml",
     ]

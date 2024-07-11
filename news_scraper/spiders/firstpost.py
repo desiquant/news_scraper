@@ -6,6 +6,7 @@ class FirstPostSpider(DailySitemapSpider):
     name = "firstpost"
 
     sitemap_frequency = "1D"
+    allowed_domains = ["firstpost.com"]
     sitemap_patterns = [
         "https://www.firstpost.com/commonfeeds/v1/mfp/sitemap/daily/{year}-{month}-{day}.xml"
     ]

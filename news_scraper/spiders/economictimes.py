@@ -8,6 +8,7 @@ class EconomicTimesSpider(DailySitemapSpider):
     name = "economictimes"
 
     sitemap_frequency = "MS"
+    allowed_domains = ["economictimes.indiatimes.com"]
     sitemap_patterns = [
         "https://economictimes.indiatimes.com/etstatic/sitemaps/et/{year}-{month}-2.xml",
         "https://economictimes.indiatimes.com/etstatic/sitemaps/et/{year}-{month}-1.xml",

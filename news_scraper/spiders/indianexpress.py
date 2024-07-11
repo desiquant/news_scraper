@@ -6,6 +6,7 @@ class IndianExpressSpider(DailySitemapSpider):
     name = "indianexpress"
 
     sitemap_frequency = "1D"
+    allowed_domains = ["indianexpress.com"]
     sitemap_patterns = [
         "https://indianexpress.com/sitemap.xml?yyyy={year}&mm={month}&dd={day}"
     ]

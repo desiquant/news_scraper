@@ -6,6 +6,7 @@ class FinancialExpressSpider(DailySitemapSpider):
     name = "financialexpress"
 
     sitemap_frequency = "1D"
+    allowed_domains = ["financialexpress.com"]
     sitemap_patterns = [
         "https://www.financialexpress.com/sitemap.xml?yyyy={year}&mm={month}&dd={day}"
     ]

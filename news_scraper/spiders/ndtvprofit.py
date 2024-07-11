@@ -6,6 +6,7 @@ class NDTVProfitSpider(DailySitemapSpider):
     name = "ndtvprofit"
 
     sitemap_frequency = "1D"
+    allowed_domains = ["ndtvprofit.com"]
     sitemap_patterns = [
         "https://www.ndtvprofit.com/sitemap/sitemap-daily-{year}-{month}-{day}.xml",
     ]

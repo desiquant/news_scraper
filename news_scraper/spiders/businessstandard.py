@@ -7,6 +7,7 @@ class BusinessStandardSpider(DailySitemapSpider):
     name = "businessstandard"
 
     sitemap_frequency = "MS"
+    allowed_domains = ["business-standard.com"]
     sitemap_patterns = [
         "https://www.business-standard.com/sitemap/{year}-{month}-1.xml",
     ]

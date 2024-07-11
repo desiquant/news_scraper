@@ -6,6 +6,7 @@ class FreePressJournalSpider(DailySitemapSpider):
     name = "freepressjournal"
 
     sitemap_frequency = "1D"
+    allowed_domains = ["freepressjournal.in"]
     sitemap_patterns = [
         "https://www.freepressjournal.in/sitemap/sitemap-daily-{year}-{month}-{day}.xml",
     ]

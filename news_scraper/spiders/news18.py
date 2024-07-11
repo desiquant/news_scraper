@@ -6,6 +6,7 @@ class News18Spider(DailySitemapSpider):
     name = "news18"
 
     sitemap_frequency = "1D"
+    allowed_domains = ["news18.com"]
     sitemap_patterns = [
         "https://www.news18.com/commonfeeds/v1/eng/sitemap/daily/{year}-{month}-{day}.xml"
     ]

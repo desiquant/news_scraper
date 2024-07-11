@@ -7,6 +7,7 @@ class MoneyControlSpider(DailySitemapSpider):
     name = "moneycontrol"
 
     sitemap_frequency = "MS"
+    allowed_domains = ["moneycontrol.com"]
     sitemap_patterns = [
         "https://www.moneycontrol.com/news/sitemap/sitemap-post-{year}-{month}.xml",
     ]
