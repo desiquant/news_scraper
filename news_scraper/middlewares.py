@@ -27,6 +27,10 @@ class NewsScraperDownloaderMiddleware:
         return s
 
     def process_request(self, request, spider: Spider):
+        # do not use cache for sitemaps
+        if request.url.endswith(".xml") and request.method == "GET":
+            request.dont_cache = True
+
         # ignore urls which are already processed
         if request.url in self.output_urls:
             spider.logger.info("Ignoring Request (already in output): %s", request.url)

@@ -6,7 +6,7 @@ from .base import DailySitemapSpider
 class MoneyControlSpider(DailySitemapSpider):
     name = "moneycontrol"
 
-    sitemap_frequency = "4W"
+    sitemap_frequency = "MS"
     sitemap_patterns = [
         "https://www.moneycontrol.com/news/sitemap/sitemap-post-{year}-{month}.xml",
     ]

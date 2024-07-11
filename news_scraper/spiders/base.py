@@ -4,10 +4,11 @@ from typing import Callable, Dict, Literal, Tuple
 import pandas as pd
 from scrapy.spiders import Request, SitemapSpider
 
+from ..utils import yesterday
+
 
 class DailySitemapSpider(SitemapSpider):
-    # TODO: the frequency is not being set in months properly
-    sitemap_frequency = "4W"
+    sitemap_frequency = "MS"  # MS -> Month Start
     sitemap_patterns = []
     sitemap_date_formatter: Dict[
         Literal["year", "month", "day"], Callable[[date], str]
@@ -17,15 +18,16 @@ class DailySitemapSpider(SitemapSpider):
         "day": lambda d: d.strftime("%d"),
     }
 
-    # TODO: when end date is None, it doesn't seem to work. It should work.
-    date_range: Tuple[date | str, date | str] = ("2024-01-01", "2024-03-01")
+    date_range: Tuple[date | str, date | str] = ("2010-01-01", yesterday)
 
     def start_requests(self):
         # iterate over date range and process each sitemap
-        for dt in pd.date_range(
-            start=self.date_range[0],
-            end=self.date_range[1],
-            freq=self.sitemap_frequency,
+        for dt in reversed(
+            pd.date_range(
+                start=self.date_range[0],
+                end=self.date_range[1],
+                freq=self.sitemap_frequency,
+            )
         ):
             for sitemap_pattern in self.sitemap_patterns:
                 url = sitemap_pattern.format(

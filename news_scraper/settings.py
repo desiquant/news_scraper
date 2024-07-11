@@ -8,12 +8,11 @@ from .utils import get_interface_ips
 total_processors = os.cpu_count()
 total_floating_ips = len(get_interface_ips())
 
-IS_DEV = True
 USE_FLOATING_IPS = True
 SKIP_OUTPUT_URLS = True
 
 
-if IS_DEV:
+if int(os.environ.get("TRIAL")) == 1:
     CLOSESPIDER_ITEMCOUNT = 5  # Stop after scraping 5 items
     CLOSESPIDER_TIMEOUT = 60  # Stop after 60 seconds
 
@@ -120,7 +119,7 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
 HTTPCACHE_ENABLED = True
 HTTPCACHE_EXPIRATION_SECS = 0
-HTTPCACHE_DIR = "httpcache" if IS_DEV else "/mnt/HC_Volume_100999593/scrapy/httpcache"
+HTTPCACHE_DIR = "httpcache"
 HTTPCACHE_IGNORE_HTTP_CODES = [403]
 HTTPCACHE_STORAGE = "scrapy.extensions.httpcache.FilesystemCacheStorage"
 

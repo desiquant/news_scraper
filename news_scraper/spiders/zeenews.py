@@ -7,7 +7,7 @@ from .base import DailySitemapSpider
 class ZeeNewsSpider(DailySitemapSpider):
     name = "zeenews"
 
-    sitemap_frequency = "4W"
+    sitemap_frequency = "MS"
     sitemap_patterns = [
         "https://zeenews.india.com/sitemaps/sitemap-{year}-{month}.xml",
     ]

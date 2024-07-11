@@ -6,7 +6,7 @@ from .base import DailySitemapSpider
 class BusinessStandardSpider(DailySitemapSpider):
     name = "businessstandard"
 
-    sitemap_frequency = "4W"
+    sitemap_frequency = "MS"
     sitemap_patterns = [
         "https://www.business-standard.com/sitemap/{year}-{month}-1.xml",
     ]
