@@ -12,9 +12,10 @@ USE_FLOATING_IPS = True
 SKIP_OUTPUT_URLS = True
 
 
-if int(os.environ.get("TRIAL")) == 1:
-    CLOSESPIDER_ITEMCOUNT = 5  # Stop after scraping 5 items
-    CLOSESPIDER_TIMEOUT = 60  # Stop after 60 seconds
+# if True:
+# if int(os.environ.get("TRIAL_RUN", 1)) != 0:
+CLOSESPIDER_ITEMCOUNT = 5  # Stop after scraping 5 items
+CLOSESPIDER_TIMEOUT = 60  # Stop after 60 seconds
 
 
 # Custom settings - End

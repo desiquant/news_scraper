@@ -8,10 +8,10 @@ Run a spider. The outputs are saved to `outputs/moneycontrol.jl` in JSONlines fo
 
 ```bash
 # stop after scraping 10 items. useful for testing purposes
-TRIAL=1 scrapy crawl moneycontrol
+scrapy crawl moneycontrol
 
 # scrape all market articles from "2010-01-01" till today with
-scrapy crawl moneycontrol
+TRIAL_RUN=0 scrapy crawl moneycontrol
 ```
 
 The following websites can be crawled: `moneycontrol`,`thehindu`,`businessstandard`,`news18`,`economictimes`,`indianexpress`,`outlookindia`,`zeenews`,`thehindubusinessline`,`businesstoday`,`freepressjournal`,`firstpost`,`ndtvprofit`,`financialexpress`
@@ -52,6 +52,10 @@ The sitemaps for each website not always directly available in `robots.txt`. Goo
 # Notes:
 
 ### TODO
+
+- Do not cache recent sitemaps
+- Run the scraper as prefect flow
+- Scraping mode - Update/dump
 
 ### Server Checklist
 

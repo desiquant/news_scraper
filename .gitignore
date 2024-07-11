@@ -6,7 +6,6 @@ __pycache__/
 # scraper
 .scrapy/
 outputs*/
-omgtest123/
 *.log
 
 # local testing
