@@ -27,7 +27,7 @@ class ZeeNewsSpider(DailySitemapSpider):
 
         # content
         article.add_css("title", "h1::text")
-        article.add_css("description", "div.article_content h2::text")
+        article.add_css("description", 'meta[name="description"]::attr(content)')
         article.add_css("author", "span.aaticleauthor_name::text")
         article.add_css("article_html", "div#fullArticle")
 

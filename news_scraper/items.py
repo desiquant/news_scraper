@@ -22,6 +22,7 @@ class NewsArticleItem(scrapy.Item):
     date_modified = scrapy.Field()
 
     article_html = scrapy.Field(output_processor=Join())
+
     # article_html = scrapy.Field(output_processor=lambda x: None)
     # text_content = scrapy.Field(
     #     input_processor=MapCompose(remove_tags, str.strip),
@@ -40,7 +41,9 @@ class NewsArticleItemLoader(ItemLoader):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         response = kwargs.get("response")
+
         if response:
+            # add some important fields from response for book keeping purposes
             self.add_value("url", response.url)
             self.add_value(
                 "scrapy_scraped_at", response.headers.get("Date").decode("utf-8")
