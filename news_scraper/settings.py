@@ -1,18 +1,25 @@
-# Custom settings
+# Custom settings - Start
+# -----------------------
 
-USE_FLOATING_IPS = False
-SKIP_URLS_IN_OUTPUT = True
-# LOG_FILE = "scrapy.log"
+import os
 
-CLOSESPIDER_ITEMCOUNT = 5  # Stop after scraping 5 items
-CLOSESPIDER_TIMEOUT = 60  # Stop after 60 seconds
+from .utils import get_interface_ips
 
-FEEDS = {"outputs/%(name)s.jl": {"format": "jsonlines"}}
+total_processors = os.cpu_count()
+total_floating_ips = len(get_interface_ips())
+
+IS_DEV = True
+USE_FLOATING_IPS = True
+SKIP_OUTPUT_URLS = True
 
 
-RETRY_ENABLED = True
-RETRY_TIMES = 2  # Number of retries
-RETRY_HTTP_CODES = [403]
+if IS_DEV:
+    CLOSESPIDER_ITEMCOUNT = 5  # Stop after scraping 5 items
+    CLOSESPIDER_TIMEOUT = 60  # Stop after 60 seconds
+
+
+# Custom settings - End
+# ---------------------
 
 
 # Scrapy settings for news_scraper project
@@ -30,6 +37,14 @@ SPIDER_MODULES = ["news_scraper.spiders"]
 NEWSPIDER_MODULE = "news_scraper.spiders"
 
 
+FEEDS = {"outputs/%(name)s.jl": {"format": "jsonlines"}}
+
+RETRY_ENABLED = True
+RETRY_TIMES = 2  # Number of retries
+RETRY_HTTP_CODES = [403]
+
+LOG_FILE = "scrapy.log"
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = "news_scraper (+http://www.yourdomain.com)"
 USER_AGENT = "Googlebot-News/2.1 (+http://www.google.com/bot.html)"
@@ -39,14 +54,16 @@ USER_AGENT = "Googlebot-News/2.1 (+http://www.google.com/bot.html)"
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-# CONCURRENT_REQUESTS = 100
+CONCURRENT_REQUESTS = 16 * min(5 * total_processors, 20)
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
 # DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
-# CONCURRENT_REQUESTS_PER_DOMAIN = 5
+CONCURRENT_REQUESTS_PER_DOMAIN = 8 * (
+    total_floating_ips if total_floating_ips > 0 else 1
+)
 # CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
@@ -103,7 +120,7 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
 HTTPCACHE_ENABLED = True
 HTTPCACHE_EXPIRATION_SECS = 0
-HTTPCACHE_DIR = "httpcache"  # TODO: make this dyanmic based on local or cloud scraping
+HTTPCACHE_DIR = "httpcache" if IS_DEV else "/mnt/HC_Volume_100999593/scrapy/httpcache"
 HTTPCACHE_IGNORE_HTTP_CODES = [403]
 HTTPCACHE_STORAGE = "scrapy.extensions.httpcache.FilesystemCacheStorage"
 

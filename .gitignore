@@ -6,6 +6,7 @@ __pycache__/
 # scraper
 .scrapy/
 outputs*/
+omgtest123/
 
 # local testing
 demo.ipynb

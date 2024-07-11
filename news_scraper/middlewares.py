@@ -4,69 +4,56 @@
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
 import itertools
-import os
 
-import netifaces
-import pandas as pd
-
-# useful for handling different item types with a single interface
+from scrapy import Spider, crawler, signals
 from scrapy.exceptions import IgnoreRequest
 
-
-def get_floating_ips(interface="eth0"):
-    try:
-        # Get all addresses for the specified interface
-        addresses = netifaces.ifaddresses(interface)
-
-        # Check if IPv4 addresses exist
-        if netifaces.AF_INET in addresses:
-            # Extract all IPv4 addresses
-            ipv4_addresses = addresses[netifaces.AF_INET]
-
-            # Filter for floating IPs (assuming they are secondary IPs)
-            floating_ips = [addr["addr"] for addr in ipv4_addresses]
-
-            return floating_ips
-        else:
-            return []
-    except ValueError:
-        print(f"Interface {interface} not found.")
-        return []
+from .utils import get_interface_ips, get_output_urls
 
 
 class NewsScraperDownloaderMiddleware:
-    # TODO: do not use floating ips in localhost
-    floating_ips = itertools.cycle(get_floating_ips("eth0"))
-    processed_urls = []
+    floating_ips = get_interface_ips()
+    output_urls = []
 
-    def process_request(self, request, spider):
+    @property
+    def floating_ips_cycle(self):
+        return itertools.cycle(self.floating_ips)
+
+    @classmethod
+    def from_crawler(cls, crawler: crawler):
+        # This method is used by Scrapy to create your spiders.
+        s = cls()
+        crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
+        return s
+
+    def process_request(self, request, spider: Spider):
         # ignore urls which are already processed
-        if request.url in self.processed_urls:
+        if request.url in self.output_urls:
+            spider.logger.info("Ignoring Request (already in output): %s", request.url)
             raise IgnoreRequest
-
-        # use all ips available on server
-        if spider.settings.get("USE_FLOATING_IPS"):
-            request.meta["bindaddress"] = (next(self.floating_ips), 0)
 
         # sample web proxy usage
         # request.meta["proxy"] = "http://user:pass@brd.superproxy.io:22225"
 
+        # use all ips available on server
+        if spider.settings.get("USE_FLOATING_IPS"):
+            if self.floating_ips:
+                request.meta["bindaddress"] = (next(self.floating_ips_cycle), 0)
+
         return None
 
-    def spider_opened(self, spider):
+    def spider_opened(self, spider: Spider):
         spider.logger.info("Spider opened: %s" % spider.name)
 
-        if spider.settings.get("SKIP_URLS_IN_OUTPUT"):
-            # TODO: make this dynamic output path
-            output_file = (
-                f"/home/skd/tmp/async-test/news_scraper/{spider.name}-output.jl"
+        spider.logger.info(
+            "Floating IPs (total: %s): %s" % (len(self.floating_ips), self.floating_ips)
+        )
+
+        # load already parsed urls
+        if spider.settings.get("SKIP_OUTPUT_URLS"):
+            # TODO: the file path should be loaded dynamically from the spider's FEEDS settings
+            output_file = f"outputs/{spider.name}.jl"
+            self.output_urls = get_output_urls(output_file)
+            spider.logger.info(
+                "Already scraped %s URLs in: %s" % (len(self.output_urls), output_file)
             )
-
-            if os.path.isfile(output_file):
-                df = pd.read_json(output_file, lines=True)
-
-                if not df.empty:
-                    self.processed_urls = list(df["url"].unique())
-                    spider.logger.info(
-                        "Spider already processed: %s URLs" % len(self.processed_urls)
-                    )
