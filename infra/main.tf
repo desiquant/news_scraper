@@ -23,6 +23,12 @@ variable "floating_ips_count" {
   description = "total number of floating ips"
 }
 
+# used to trigger attaching existing ips to server
+variable "dummy_trigger" {
+  type        = string
+  description = "attaching existing ips to server"
+}
+
 # existing resources
 
 provider "hcloud" {
@@ -50,7 +56,7 @@ resource "null_resource" "configure_ip" {
   triggers = {
     server_ip     = data.hcloud_server.server.ipv4_address
     floating_ip   = hcloud_floating_ip.floating_ip[count.index].ip_address
-    dummy_trigger = "123xx"
+    dummy_trigger = var.dummy_trigger
   }
 
   connection {
