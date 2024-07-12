@@ -13,5 +13,5 @@ setup(
         "pytest",
     ],
     url="https://github.com/desiquant/news_scraper",
-    python_requires=">=3.6",
+    python_requires=">=3.10",
 )
