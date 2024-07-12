@@ -1,3 +1,5 @@
+# Scrapy default settings: https://github.com/scrapy/scrapy/blob/master/scrapy/settings/default_settings.py
+
 import os
 
 from .utils import get_interface_ips
@@ -14,7 +16,17 @@ USER_AGENT = "Googlebot-News/2.1 (+http://www.google.com/bot.html)"
 ROBOTSTXT_OBEY = False
 
 # Request Retry Settings
-RETRY_HTTP_CODES = [403]  # if blocked by domain
+RETRY_HTTP_CODES = [
+    500,
+    502,
+    503,
+    504,
+    522,
+    524,
+    408,
+    403,  # if blocked by domain
+    429,
+]
 
 # Concurrency Settings
 total_processors = os.cpu_count()

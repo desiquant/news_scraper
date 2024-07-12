@@ -2,6 +2,8 @@
 
 > A [scrapy](https://github.com/scrapy/scrapy) crawler that scrapes market news from Indian financial news outlets
 
+> ⚠️ **WARNING**: Work in progress. Will implement breaking frequently.
+
 # Usage
 
 Run a spider. The outputs are saved to `outputs/moneycontrol.jl` in JSONlines format
@@ -79,15 +81,12 @@ The sitemaps for each website not always directly available in `robots.txt`. Goo
 
 ### TODO
 
-- Rename custom settings to `.get` to `.getint`, `getbool`, etc.
-- Enable trial run in settings
-- Separate settings into frequently modified and other
 - Do not cache recent sitemaps
 - Run the scraper as prefect flow
 - Scraping mode - Update/dump
 - While running the test, if it fails, prevent scrapy from showing the entire output
 - export PYTHONDONTWRITEBYTECODE=1
-- Do not write scrapy.log by default since benchmarket, parse, etc output should ideally be visible
+- pytest failing on few spiders on remote server
 
 ### Server Checklist
 

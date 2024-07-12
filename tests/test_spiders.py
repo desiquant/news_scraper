@@ -42,9 +42,8 @@ def test_spider_new(spider_name):
         "CLOSESPIDER_TIMEOUT": 30,  # Stop after 30 seconds,
         # Save the outputs to a new temporary file
         "FEEDS": json.dumps({output_file: {"format": "jsonlines", "overwrite": True}}),
-        "HTTPCACHE_ENABLED": True,  # Do not cache requests, # ! TEMP: disable cache
+        "HTTPCACHE_ENABLED": False,  # Do not cache requests, # ! TEMP: disable cache
         "LOG_FILE": "scrapy.log",  # Prevent log from writing to stdout,
-        "LOG_FILE_APPEND": False,
     }
 
     command = ["scrapy", "crawl", spider_name] + [
