@@ -83,6 +83,7 @@ The sitemaps for each website not always directly available in `robots.txt`. Goo
 
 ### TODO
 
+- Write tests for parse results of spiders
 - Do not cache recent sitemaps
 - Run the scraper as prefect flow
 - Scraping mode - Update/dump

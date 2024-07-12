@@ -26,7 +26,7 @@ class OutlookIndiaSpider(DailySitemapSpider):
         article.add_xpath("title", "//h1//text()")
         article.add_css("description", 'div[data-test-id="subheadline"]::text')
         article.add_css("author", 'a[aria-label="author-name"]::text')
-        article.add_css("article_html", "div.text-story-m_gap-16__5BPKQ")
+        article.add_xpath("article_text", '//div[@data-test-id="text"]/p/text()')
 
         # dates
         ld_data = response.css("script[type='application/ld+json']::text")[1].get()

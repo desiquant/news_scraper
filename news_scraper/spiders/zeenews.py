@@ -30,7 +30,7 @@ class ZeeNewsSpider(DailySitemapSpider):
         article.add_css("title", "h1::text")
         article.add_css("description", 'meta[name="description"]::attr(content)')
         article.add_css("author", "span.aaticleauthor_name::text")
-        article.add_css("article_html", "div#fullArticle")
+        article.add_xpath("article_text", '//div[@id="fullArticle"]/div/div/p/text()')
 
         # dates
         ld_data = response.css("script[type='application/ld+json']::text")[2].get()

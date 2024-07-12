@@ -27,7 +27,7 @@ class MoneyControlSpider(DailySitemapSpider):
         article.add_css("title", "h1::text")
         article.add_css("description", "h2.article_desc::text")
         article.add_xpath("author", '//div[@class="article_author"]//text()')
-        article.add_css("article_html", "div.page_left_wrapper")
+        article.add_xpath("article_text", '//div[@id="contentdata"]/p/text()')
 
         # dates
         article.add_css(

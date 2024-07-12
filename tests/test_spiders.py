@@ -37,7 +37,7 @@ def test_spider_new(spider_name):
 
     settings = {
         "SKIP_OUTPUT_URLS": False,  # Do not skip URLs that have already been processed
-        "CLOSESPIDER_ITEMCOUNT": 5,  # Stop after scraping 5 items
+        "CLOSESPIDER_ITEMCOUNT": 10,  # Stop after scraping 5 items
         "CONCURRENT_REQUESTS": 5,  # If default concurrent is used, it ignores itemcount limit
         "CLOSESPIDER_TIMEOUT": 30,  # Stop after 30 seconds,
         # Save the outputs to a new temporary file
@@ -72,7 +72,7 @@ def test_spider_new(spider_name):
         "author",
         "date_published",
         "date_modified",
-        "article_html",
+        "article_text",
         "scrapy_scraped_at",
         "scrapy_parsed_at",
     }

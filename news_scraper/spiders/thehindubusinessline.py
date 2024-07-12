@@ -25,7 +25,9 @@ class TheHinduBusinessLineSpider(DailySitemapSpider):
         article.add_css("title", "h1::text")
         article.add_css("description", "h2.bl-sub-text::text")
         article.add_css("author", "div.author-name span::text")
-        article.add_css("article_html", "div.storyline")
+
+        # TODO: href texts are ignored. include them as well
+        article.add_xpath("article_text", '//div[@itemprop="articleBody"]/p/text()')
 
         # dates
         article.add_css(

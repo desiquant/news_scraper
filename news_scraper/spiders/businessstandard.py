@@ -22,7 +22,7 @@ class BusinessStandardSpider(DailySitemapSpider):
 
     def parse(self, response):
         """
-        sample article: https://www.business-standard.com/markets/news/analysts-laud-bajaj-auto-s-cng-powered-freedom-125-bike-wary-of-adoption-124070800259_1.html
+        sample article: https://www.business-standard.com/markets/news/railtel-stock-soars-18-on-heavy-volumes-up-331-in-1-year-124071200447_1.html
         """
 
         article = NewsArticleItemLoader(item=NewsArticleItem(), response=response)
@@ -31,7 +31,10 @@ class BusinessStandardSpider(DailySitemapSpider):
         article.add_css("title", "h1.stryhdtp::text")
         article.add_css("description", "h2.strydsc::text")
         article.add_css("author", "span.MainStory_dtlauthinfo__u_CUx span::text")
-        article.add_css("article_html", "div.storydetail")
+        article.add_xpath(
+            "article_text",
+            '//div[@id="parent_top_div"]/div/text() | //div[@class="MainStory_storycontent__Pe3ys"]/div/text()',
+        )
 
         # dates
         article.add_css(

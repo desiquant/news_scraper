@@ -24,7 +24,7 @@ class FinancialExpressSpider(DailySitemapSpider):
         article.add_css("title", "h1::text")
         article.add_css("description", "h2.heading-four::text")
         article.add_css("author", 'meta[itemprop="author"]::attr(content)')
-        article.add_css("article_html", "div.article-section")
+        article.add_xpath("article_text", '//div[@id="pcl-full-content"]/p/text()')
 
         # dates
         article.add_css(

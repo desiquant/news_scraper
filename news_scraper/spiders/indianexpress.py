@@ -24,7 +24,10 @@ class IndianExpressSpider(DailySitemapSpider):
         article.add_css("title", "h1::text")
         article.add_css("description", "h2.synopsis::text")
         article.add_css("author", "div.editor a::text")
-        article.add_css("article_html", "div.story-details")
+        article.add_xpath(
+            "article_text",
+            '//div[@id="pcl-full-content"]/p/text() | //div[contains(@class,"ie-premium-content-block")]/p/text()',
+        )
 
         # dates
         article.add_css(

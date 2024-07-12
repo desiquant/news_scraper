@@ -8,7 +8,6 @@ from datetime import datetime
 import scrapy
 from itemloaders.processors import Join, MapCompose, TakeFirst
 from scrapy.loader import ItemLoader
-from w3lib.html import remove_tags
 
 
 class NewsArticleItem(scrapy.Item):
@@ -21,13 +20,9 @@ class NewsArticleItem(scrapy.Item):
     date_published = scrapy.Field()
     date_modified = scrapy.Field()
 
-    article_html = scrapy.Field(output_processor=Join())
-
-    # article_html = scrapy.Field(output_processor=lambda x: None)
-    # text_content = scrapy.Field(
-    #     input_processor=MapCompose(remove_tags, str.strip),
-    #     output_processor=Join("\n"),
-    # )
+    article_text = scrapy.Field(
+        input_processor=MapCompose(str.strip), output_processor=Join()
+    )
 
     # is_paywall = scrapy.Field()
 

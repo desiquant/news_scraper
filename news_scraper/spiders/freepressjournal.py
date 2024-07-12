@@ -24,7 +24,7 @@ class FreePressJournalSpider(DailySitemapSpider):
         article.add_css("title", "h1::text")
         article.add_css("description", "h2#heading-2::text")
         article.add_css("author", "a.author-name::text")
-        article.add_css("article_html", "div.article-lhs")
+        article.add_xpath("article_text", '//article[@id="fjp-article"]/p/text()')
 
         # dates
         article.add_css(

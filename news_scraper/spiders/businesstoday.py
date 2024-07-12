@@ -24,7 +24,9 @@ class BusinessTodaySpider(DailySitemapSpider):
         article.add_css("title", "h1::text")
         article.add_css("description", "h2::text")
         article.add_css("author", "div.brand-detial-main a::text")
-        article.add_css("article_html", "div.content-area")
+        article.add_xpath(
+            "article_text", '//div[@id="descriptionStoryId"]/div/p/text()'
+        )
 
         # dates
         article.add_css(

@@ -25,7 +25,7 @@ class TheHinduSpider(DailySitemapSpider):
         article.add_css("title", "h1::text")
         article.add_css("description", "h2.sub-title::text")
         article.add_xpath("author", '//div[@class="author"]//text()')
-        article.add_css("article_html", "div.storyline")
+        article.add_xpath("article_text", '//div[@itemprop="articleBody"]/p/text()')
 
         # dates
         article.add_css(

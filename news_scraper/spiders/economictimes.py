@@ -32,7 +32,10 @@ class EconomicTimesSpider(DailySitemapSpider):
         article.add_css("title", "h1::text")
         article.add_css("description", "h2.summary::text")
         article.add_xpath("author", '//div[@class="auth"]//text()')
-        article.add_css("article_html", "div.article_wrap")
+        article.add_xpath(
+            "article_text",
+            '//div[@class="artText"]/text() | //div[@class="artText"]/a/text()',
+        )
 
         # dates
         ld_data = response.css("script[type='application/ld+json']::text")[1].get()

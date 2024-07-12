@@ -15,7 +15,7 @@ class News18Spider(DailySitemapSpider):
 
     def parse(self, response):
         """
-        sample article: https://www.news18.com/business/markets/stocks-to-watch-tcs-nykaa-yes-bank-sbi-tata-elxsi-power-grid-asian-paints-and-others-8961429.html
+        sample article: https://www.news18.com/business/markets/hcl-tech-announces-interim-dividend-of-rs-12-per-share-for-fy25-check-record-date-8963502.html
         """
 
         article = NewsArticleItemLoader(item=NewsArticleItem(), response=response)
@@ -26,7 +26,11 @@ class News18Spider(DailySitemapSpider):
         article.add_xpath(
             "author", '//span[contains(@class, "article_postby")]//text()'
         )
-        article.add_css("article_html", "article.story_body")
+
+        # TODO: text in bold are ignored, add this text as well
+        article.add_xpath(
+            "article_text", '//div[@class="jsx-9ea5c73edc9a77a6"]/p/text()'
+        )
 
         # dates
         article.add_css(
