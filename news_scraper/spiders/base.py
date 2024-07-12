@@ -18,7 +18,7 @@ class DailySitemapSpider(SitemapSpider):
         "day": lambda d: d.strftime("%d"),
     }
 
-    date_range: Tuple[date | str, date | str] = ("2010-01-01", yesterday)
+    date_range: Tuple[date | str, date | str] = ("2020-01-01", yesterday)
 
     def start_requests(self):
         sitemap_dates = pd.date_range(

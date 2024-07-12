@@ -87,6 +87,7 @@ The sitemaps for each website not always directly available in `robots.txt`. Goo
 - While running the test, if it fails, prevent scrapy from showing the entire output
 - export PYTHONDONTWRITEBYTECODE=1
 - pytest failing on few spiders on remote server
+- moneycontrol and indianexpress have very aggressive protection. they don't seem to allow usage of even floating ips from hetzner. but ips of brightdata seem to work
 
 ### Server Checklist
 

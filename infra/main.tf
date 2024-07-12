@@ -18,6 +18,11 @@ variable "server_id" {
   description = "hetzner cloud server id"
 }
 
+variable "floating_ips_count" {
+  type        = number
+  description = "total number of floating ips"
+}
+
 # existing resources
 
 provider "hcloud" {
@@ -32,7 +37,7 @@ data "hcloud_server" "server" {
 # create floating ips and attach
 
 resource "hcloud_floating_ip" "floating_ip" {
-  count     = 9
+  count     = var.floating_ips_count
   type      = "ipv4"
   server_id = data.hcloud_server.server.id
 }

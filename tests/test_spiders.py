@@ -43,7 +43,7 @@ def test_spider_new(spider_name):
         # Save the outputs to a new temporary file
         "FEEDS": json.dumps({output_file: {"format": "jsonlines", "overwrite": True}}),
         "HTTPCACHE_ENABLED": False,  # Do not cache requests, # ! TEMP: disable cache
-        "LOG_FILE": "scrapy.log",  # Prevent log from writing to stdout,
+        "LOG_FILE": "test-run.log",  # Prevent log from writing to stdout,
     }
 
     command = ["scrapy", "crawl", spider_name] + [
