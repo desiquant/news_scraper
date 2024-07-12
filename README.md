@@ -4,7 +4,7 @@
 
 > ⚠️ **WARNING**: Work in progress. Will implement breaking frequently.
 
-![Build Status](https://github.com/desiquant/repo/news_scraper/CI/badge.svg)
+![test status](https://github.com/desiquant/news_scraper/actions/workflows/test.yml/badge.svg)
 
 # Usage
 
