@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - "**"
+  schedule:
+    - cron: "0 18 * * *" # Run at 6:00 PM UTC every day
 
 jobs:
   test:
@@ -15,7 +17,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.12
 
       - name: Install dependencies
         run: pip install -e .
