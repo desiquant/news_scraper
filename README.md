@@ -4,6 +4,8 @@
 
 > ⚠️ **WARNING**: Work in progress. Will implement breaking frequently.
 
+![Build Status](https://github.com/desiquant/repo/news_scraper/CI/badge.svg)
+
 # Usage
 
 Run a spider. The outputs are saved to `outputs/moneycontrol.jl` in JSONlines format
