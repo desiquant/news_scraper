@@ -10,7 +10,10 @@ setup(
         "pandas",
         "netifaces",
         "fake-useragent",
+    ],
+    test_requires=[
         "pytest",
+        "syrupy",
     ],
     url="https://github.com/desiquant/news_scraper",
     python_requires=">=3.10",

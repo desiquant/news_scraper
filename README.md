@@ -54,7 +54,8 @@ Run tests to check if spiders are still working.
 # view the parsed the article
 scrapy parse https://www.businesstoday.in/markets/stocks/story/upward-revision-in-eps-estimates-what-analysts-say-on-tcs-q1-results-stock-trading-strategy-436794-2024-07-11
 
-# intergration test all spiders
+# test all spiders
+pip install -e .[test]
 pytest
 ```
 
