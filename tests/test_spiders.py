@@ -1,62 +1,90 @@
 import json
+import multiprocessing
 import os
 import subprocess
 
 import pandas as pd
 import pytest
+from scrapy import Spider
+from scrapy.crawler import CrawlerProcess
+from scrapy.utils.project import Settings, get_project_settings
+
+from news_scraper.spiders import (
+    BusinessStandardSpider,
+    BusinessTodaySpider,
+    EconomicTimesSpider,
+    FinancialExpressSpider,
+    FirstPostSpider,
+    FreePressJournalSpider,
+    IndianExpressSpider,
+    MoneyControlSpider,
+    NDTVProfitSpider,
+    News18Spider,
+    OutlookIndiaSpider,
+    TheHinduBusinessLineSpider,
+    TheHinduSpider,
+    ZeeNewsSpider,
+)
 
 
 @pytest.fixture(
     params=[
-        "businessstandard",
-        "businesstoday",
-        "economictimes",
-        "financialexpress",
-        "firstpost",
-        "freepressjournal",
-        "indianexpress",
-        "moneycontrol",
-        "ndtvprofit",
-        "news18",
-        "outlookindia",
-        "thehindu",
-        "thehindubusinessline",
-        "zeenews",
+        BusinessStandardSpider,
+        BusinessTodaySpider,
+        EconomicTimesSpider,
+        FinancialExpressSpider,
+        FirstPostSpider,
+        FreePressJournalSpider,
+        IndianExpressSpider,
+        MoneyControlSpider,
+        NDTVProfitSpider,
+        News18Spider,
+        OutlookIndiaSpider,
+        TheHinduSpider,
+        TheHinduBusinessLineSpider,
+        ZeeNewsSpider,
     ]
 )
-def spider_name(request):
+def spider(request):
     return request.param
 
 
-def test_spider_new(spider_name):
-    output_file = f"outputs-test/{spider_name}.jl"
+def run_spider(spider: Spider, settings: Settings):
+    process = CrawlerProcess(settings)
+    process.crawl(spider)
+    process.start()
+
+
+def test_spider_crawl(spider: Spider):
+    output_file = f"outputs-process-test/{spider.name}.jl"
 
     # remove output if exists
     if os.path.isfile(output_file):
         os.remove(output_file)
 
-    settings = {
-        "SKIP_OUTPUT_URLS": False,  # Do not skip URLs that have already been processed
-        "CLOSESPIDER_ITEMCOUNT": 10,  # Stop after scraping 5 items
-        "CONCURRENT_REQUESTS": 5,  # If default concurrent is used, it ignores itemcount limit
-        "CLOSESPIDER_TIMEOUT": 30,  # Stop after 30 seconds,
-        # Save the outputs to a new temporary file
-        "FEEDS": json.dumps({output_file: {"format": "jsonlines", "overwrite": True}}),
-        "HTTPCACHE_ENABLED": False,  # Do not cache requests, # ! TEMP: disable cache
-        "LOG_FILE": "test-run.log",  # Prevent log from writing to stdout,
-    }
-
-    command = ["scrapy", "crawl", spider_name] + [
-        f"-s {k}='{v}'" for k, v in settings.items()
-    ]
-
-    process = subprocess.run(
-        " ".join(command), shell=True, capture_output=True, text=True
+    settings = get_project_settings()
+    settings.update(
+        {
+            "SKIP_OUTPUT_URLS": False,  # Do not skip URLs that have already been processed
+            "CLOSESPIDER_ITEMCOUNT": 10,  # Stop after scraping 5 items
+            "CONCURRENT_REQUESTS": 5,  # If default concurrent is used, it ignores itemcount limit
+            "CLOSESPIDER_TIMEOUT": 30,  # Stop after 30 seconds,
+            # Save the outputs to a new temporary file
+            "FEEDS": {output_file: {"format": "jsonlines", "overwrite": True}},
+            "HTTPCACHE_ENABLED": False,  # Do not cache requests, # ! TEMP: disable cache
+            "LOG_FILE": "test-run.log",  # Prevent log from writing to stdout,
+        }
     )
 
-    assert (
-        process.returncode == 0
-    ), f"Scrapy command failed with errors: {process.stderr}"
+    p = multiprocessing.Process(
+        target=run_spider,
+        args=(
+            spider,
+            settings,
+        ),
+    )
+    p.start()
+    p.join()
 
     # check if spider created output
     if not os.path.isfile(output_file):
