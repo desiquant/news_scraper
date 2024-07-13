@@ -11,10 +11,12 @@ setup(
         "netifaces",
         "fake-useragent",
     ],
-    test_requires=[
-        "pytest",
-        "syrupy",
-    ],
+    extras_require={
+        "test": [
+            "pytest",
+            "syrupy",
+        ],
+    },
     url="https://github.com/desiquant/news_scraper",
     python_requires=">=3.10",
 )
