@@ -1,9 +1,9 @@
 from ..items import NewsArticleItem, NewsArticleItemLoader
 from ..utils import ua
-from .base import DailySitemapSpider
+from .base import SitemapIndexSpider
 
 
-class MoneyControlSpider(DailySitemapSpider):
+class MoneyControlSpider(SitemapIndexSpider):
     name = "moneycontrol"
 
     sitemap_frequency = "MS"

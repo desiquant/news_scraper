@@ -1,10 +1,10 @@
 import json
 
 from ..items import NewsArticleItem, NewsArticleItemLoader
-from .base import DailySitemapSpider
+from .base import SitemapIndexSpider
 
 
-class ZeeNewsSpider(DailySitemapSpider):
+class ZeeNewsSpider(SitemapIndexSpider):
     name = "zeenews"
 
     sitemap_frequency = "MS"

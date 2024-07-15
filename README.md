@@ -86,7 +86,6 @@ The sitemaps for each website not always directly available in `robots.txt`. Goo
 
 - Make sure empty outputs/files are ignored while parsing dask glob.
 - Generate a final s3 dump file that can be used.
-- Do not cache recent sitemaps
 - Run the scraper as prefect flow
 - Scraping mode - Update/dump
 - While running the test, if it fails, prevent scrapy from showing the entire output

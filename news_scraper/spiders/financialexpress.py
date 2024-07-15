@@ -1,8 +1,8 @@
 from ..items import NewsArticleItem, NewsArticleItemLoader
-from .base import DailySitemapSpider
+from .base import SitemapIndexSpider
 
 
-class FinancialExpressSpider(DailySitemapSpider):
+class FinancialExpressSpider(SitemapIndexSpider):
     name = "financialexpress"
 
     sitemap_frequency = "1D"

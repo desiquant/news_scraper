@@ -1,10 +1,10 @@
 import json
 
 from ..items import NewsArticleItem, NewsArticleItemLoader
-from .base import DailySitemapSpider
+from .base import SitemapIndexSpider
 
 
-class OutlookIndiaSpider(DailySitemapSpider):
+class OutlookIndiaSpider(SitemapIndexSpider):
     name = "outlookindia"
 
     sitemap_frequency = "1D"

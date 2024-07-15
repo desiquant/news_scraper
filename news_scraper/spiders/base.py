@@ -7,7 +7,7 @@ from scrapy.spiders import Request, SitemapSpider
 from ..utils import yesterday
 
 
-class DailySitemapSpider(SitemapSpider):
+class SitemapIndexSpider(SitemapSpider):
     sitemap_frequency = "MS"  # MS -> Month Start
     sitemap_patterns = []
     sitemap_date_formatter: Dict[
@@ -39,7 +39,7 @@ class DailySitemapSpider(SitemapSpider):
                     day=self.sitemap_date_formatter.get("day", lambda x: "")(dt),
                 )
 
-                yield Request(url, self._parse_sitemap)
+                yield Request(url, self._parse_sitemap, meta={"dont_cache": True})
 
                 sitemaps_processed += 1
 
