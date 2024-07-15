@@ -84,7 +84,7 @@ The sitemaps for each website not always directly available in `robots.txt`. Goo
 
 ### TODO
 
-- Make sure empty fields are written so that there is predictable column structure for the entire file, or else dask will throw meta data errors since each partition may have variable column size.
+- Make sure empty outputs/files are ignored while parsing dask glob.
 - Generate a final s3 dump file that can be used.
 - Do not cache recent sitemaps
 - Run the scraper as prefect flow

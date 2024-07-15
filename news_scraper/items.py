@@ -44,3 +44,16 @@ class NewsArticleItemLoader(ItemLoader):
                 "scrapy_scraped_at", response.headers.get("Date").decode("utf-8")
             )
             self.add_value("scrapy_parsed_at", datetime.now().isoformat())
+
+    def load_item(self):
+        """
+        Modify load_item to set a default "null" value for fields.
+
+        This is to ensure the output has a predictable column structure across all outputs while parsing them as a glob in with dask.
+        """
+        item = super().load_item()
+
+        for field_name in item.fields:
+            if field_name not in item:
+                item[field_name] = None
+        return item

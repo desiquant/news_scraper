@@ -163,6 +163,7 @@
       'date_modified': '2024-07-08T08:43:59+05:30',
       'date_published': '2024-07-08T08:38:21+05:30',
       'description': 'Emkay Global reiterates BUY with a ₹700 target by June 2025, citing strong execution and robust growth. DART maintains an “Accumulate” rating, noting steady revenue and margin gains.',
+      'title': None,
       'url': 'https://www.thehindubusinessline.com/markets/stock-markets/brokerage-views-on-dabur-emkay-global-and-dart-insights/article68380231.ece',
     }),
   ])
@@ -171,6 +172,7 @@
   list([
     dict({
       'article_text': "New Delhi: Pharma and healthcare stocks are top gainers on Wednesday with the index up 2.7 per cent. BSE Healthcare index is the top gainer among all sectoral indices on Wednesday. Sun Pharma is the top Sensex gainer with gains of more than 3 per cent. Dr Reddy's is up more than 4 per cent. Max Healthcare is up 6 per cent. Gland Pharma is up 6 per cent, Wockhardt is up 4 per cent, Alembic Pharma is up 6 per cent. The Fed decision tonight and the interim Budget tomorrow will weigh on markets in the near-term, says V K Vijayakumar, Chief Investment Strategist, Geojit Financial Services. Global markets will be keenly watching the Fed comment on the timeline and quantum of rate cuts. The first rate cut is likely to come in June 2024. The decline in the 10-year yield to 4.02% is positive since it will restrain FPI outflows, he said. The domestic market will be focused on the interim Budget particularly on any proposals regarding taxation of investments relating to the capital market. The fiscal deficit and its glide path also is important since growth with stability is hugely important from the market perspective, he said. Stock specific movements are likely in response to sectoral allocations in the Budget, he added.",
+      'author': None,
       'date_modified': '2024-01-31T15:36:08+05:30',
       'date_published': '2024-01-31T15:36:08+05:30',
       'description': 'Sun Pharma is the top Sensex gainer with gains of more than 3 per cent. Dr Reddys is up more than 4 per cent. Max Healthcare is up 6 per cent.',
