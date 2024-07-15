@@ -2,6 +2,8 @@
 
 import os
 
+from scrapy.utils.project import data_path
+
 from .utils import get_interface_ips
 
 # Basic Settings
@@ -52,7 +54,8 @@ HTTPCACHE_IGNORE_HTTP_CODES = [403]
 HTTPCACHE_STORAGE = "scrapy.extensions.httpcache.FilesystemCacheStorage"
 
 # Feed Settings
-FEEDS = {"outputs/%(name)s.jl": {"format": "jsonlines"}}
+# ! BUG (minor): creates %(name)s.jl folder as well when createdir
+FEEDS = {data_path("outputs/%(name)s.jl", createdir=True): {"format": "jsonlines"}}
 FEED_EXPORT_ENCODING = "utf-8"
 
 # Custom Settings

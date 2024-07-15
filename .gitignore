@@ -5,7 +5,7 @@ __pycache__/
 
 # scraper
 .scrapy/
-outputs*/
+data/
 *.log
 
 # local testing
