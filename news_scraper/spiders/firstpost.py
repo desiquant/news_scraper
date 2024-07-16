@@ -5,7 +5,7 @@ from .base import SitemapIndexSpider
 class FirstPostSpider(SitemapIndexSpider):
     name = "firstpost"
 
-    sitemap_frequency = "1D"
+    sitemap_type = "daily"
     allowed_domains = ["firstpost.com"]
     sitemap_patterns = [
         "https://www.firstpost.com/commonfeeds/v1/mfp/sitemap/daily/{year}-{month}-{day}.xml"

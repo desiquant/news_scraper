@@ -7,7 +7,7 @@ from .base import SitemapIndexSpider
 class OutlookIndiaSpider(SitemapIndexSpider):
     name = "outlookindia"
 
-    sitemap_frequency = "1D"
+    sitemap_type = "daily"
     allowed_domains = ["outlookindia.com"]
     sitemap_patterns = [
         "https://business.outlookindia.com/sitemap/sitemap-daily-{year}-{month}-{day}.xml",

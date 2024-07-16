@@ -6,7 +6,7 @@ from .base import SitemapIndexSpider
 class BusinessStandardSpider(SitemapIndexSpider):
     name = "businessstandard"
 
-    sitemap_frequency = "MS"
+    sitemap_type = "monthly"
     allowed_domains = ["business-standard.com"]
     sitemap_patterns = [
         "https://www.business-standard.com/sitemap/{year}-{month}-1.xml",

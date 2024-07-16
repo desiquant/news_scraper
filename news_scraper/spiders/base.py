@@ -8,7 +8,7 @@ from ..utils import yesterday
 
 
 class SitemapIndexSpider(SitemapSpider):
-    sitemap_frequency = "MS"  # MS -> Month Start
+    sitemap_type: Literal["daily", "monthly", "yearly"] = "monthly"
     sitemap_patterns = []
     sitemap_date_formatter: Dict[
         Literal["year", "month", "day"], Callable[[date], str]
@@ -21,10 +21,19 @@ class SitemapIndexSpider(SitemapSpider):
     date_range: Tuple[date | str, date | str] = ("2020-01-01", yesterday)
 
     def start_requests(self):
+        if self.sitemap_type == "daily":
+            sitemap_frequency = pd.DateOffset(days=1)
+        elif self.sitemap_type == "monthly":
+            sitemap_frequency = pd.DateOffset(months=1)
+        elif self.sitemap_type == "yearly":
+            sitemap_frequency = pd.DateOffset(years=1)
+        else:
+            raise NotImplementedError(self.sitemap_type)
+
         sitemap_dates = pd.date_range(
             start=self.date_range[0],
             end=self.date_range[1],
-            freq=self.sitemap_frequency,
+            freq=sitemap_frequency,
         )[::-1]
 
         sitemaps_processed = 0

@@ -7,7 +7,7 @@ from .base import SitemapIndexSpider
 class EconomicTimesSpider(SitemapIndexSpider):
     name = "economictimes"
 
-    sitemap_frequency = "MS"
+    sitemap_type = "monthly"
     allowed_domains = ["economictimes.indiatimes.com"]
     sitemap_patterns = [
         "https://economictimes.indiatimes.com/etstatic/sitemaps/et/{year}-{month}-2.xml",

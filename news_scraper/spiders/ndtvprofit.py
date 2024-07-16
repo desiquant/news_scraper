@@ -5,7 +5,7 @@ from .base import SitemapIndexSpider
 class NDTVProfitSpider(SitemapIndexSpider):
     name = "ndtvprofit"
 
-    sitemap_frequency = "1D"
+    sitemap_type = "daily"
     allowed_domains = ["ndtvprofit.com"]
     sitemap_patterns = [
         "https://www.ndtvprofit.com/sitemap/sitemap-daily-{year}-{month}-{day}.xml",

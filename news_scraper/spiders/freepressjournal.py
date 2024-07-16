@@ -5,7 +5,7 @@ from .base import SitemapIndexSpider
 class FreePressJournalSpider(SitemapIndexSpider):
     name = "freepressjournal"
 
-    sitemap_frequency = "1D"
+    sitemap_type = "daily"
     allowed_domains = ["freepressjournal.in"]
     sitemap_patterns = [
         "https://www.freepressjournal.in/sitemap/sitemap-daily-{year}-{month}-{day}.xml",

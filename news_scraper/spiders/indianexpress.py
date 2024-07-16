@@ -5,7 +5,7 @@ from .base import SitemapIndexSpider
 class IndianExpressSpider(SitemapIndexSpider):
     name = "indianexpress"
 
-    sitemap_frequency = "1D"
+    sitemap_type = "daily"
     allowed_domains = ["indianexpress.com"]
     sitemap_patterns = [
         "https://indianexpress.com/sitemap.xml?yyyy={year}&mm={month}&dd={day}"

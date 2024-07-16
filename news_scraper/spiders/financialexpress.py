@@ -5,7 +5,7 @@ from .base import SitemapIndexSpider
 class FinancialExpressSpider(SitemapIndexSpider):
     name = "financialexpress"
 
-    sitemap_frequency = "1D"
+    sitemap_type = "daily"
     allowed_domains = ["financialexpress.com"]
     sitemap_patterns = [
         "https://www.financialexpress.com/sitemap.xml?yyyy={year}&mm={month}&dd={day}"

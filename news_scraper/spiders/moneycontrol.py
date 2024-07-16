@@ -6,7 +6,7 @@ from .base import SitemapIndexSpider
 class MoneyControlSpider(SitemapIndexSpider):
     name = "moneycontrol"
 
-    sitemap_frequency = "MS"
+    sitemap_type = "monthly"
     allowed_domains = ["moneycontrol.com"]
     sitemap_patterns = [
         "https://www.moneycontrol.com/news/sitemap/sitemap-post-{year}-{month}.xml",

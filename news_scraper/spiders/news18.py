@@ -5,7 +5,7 @@ from .base import SitemapIndexSpider
 class News18Spider(SitemapIndexSpider):
     name = "news18"
 
-    sitemap_frequency = "1D"
+    sitemap_type = "daily"
     allowed_domains = ["news18.com"]
     sitemap_patterns = [
         "https://www.news18.com/commonfeeds/v1/eng/sitemap/daily/{year}-{month}-{day}.xml"

@@ -7,7 +7,7 @@ from .base import SitemapIndexSpider
 class ZeeNewsSpider(SitemapIndexSpider):
     name = "zeenews"
 
-    sitemap_frequency = "MS"
+    sitemap_type = "monthly"
     allowed_domains = ["zeenews.india.com"]
     sitemap_patterns = [
         "https://zeenews.india.com/sitemaps/sitemap-{year}-{month}.xml",

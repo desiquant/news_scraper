@@ -5,7 +5,7 @@ from .base import SitemapIndexSpider
 class BusinessTodaySpider(SitemapIndexSpider):
     name = "businesstoday"
 
-    sitemap_frequency = "1D"
+    sitemap_type = "daily"
     allowed_domains = ["businesstoday.in"]
     sitemap_patterns = [
         "https://www.businesstoday.in/rssfeeds/date-wise-story-sitemap.xml?yyyy={year}&mm={month}&dd={day}",
