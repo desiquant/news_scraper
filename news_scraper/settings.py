@@ -55,7 +55,12 @@ HTTPCACHE_STORAGE = "scrapy.extensions.httpcache.FilesystemCacheStorage"
 
 # Feed Settings
 # ! BUG (minor): creates %(name)s.jl folder as well when createdir
-FEEDS = {data_path("outputs/%(name)s.jl", createdir=True): {"format": "jsonlines"}}
+FEEDS = {
+    data_path("outputs/%(name)s.jl", createdir=True): {
+        "format": "jsonlines",
+        "store_empty": False,
+    }
+}
 FEED_EXPORT_ENCODING = "utf-8"
 
 # Custom Settings

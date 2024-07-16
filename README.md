@@ -80,11 +80,19 @@ The sitemaps for each website not always directly available in `robots.txt`. Goo
 | [Financial Express](https://www.financialexpress.com)           | Daily Sitemap    | [Link](https://www.financialexpress.com/sitemap.xml?yyyy=2024&mm=07&dd=08)                      |
 | [Indian Express](https://indianexpress.com)                     | Daily Sitemap    | [Link](https://indianexpress.com/sitemap.xml?yyyy=2024&mm=07&dd=08)                             |
 
+**More Sources**
+
+The following news websites were in consideration but no daily sitemaps were found. Some effective strategies (requires more research) to iteratively retrieve a list of all articles are mentioned below.
+
+- https://www.livemint.com/api/cms/story/v2/11720327511606 - Check Content Length in Head. TODO: Check for market slug with a smaller query
+- https://timesofindia.indiatimes.com/articleshow/81896735.cms - Redirect not showing in head, No sitemap as well.
+- https://www.indiainfoline.com/news/top-share-market-news/page/14072 - New articles have no ID in the url. Seems to allow [old articles](https://www.indiainfoline.com/article/x/x-122110400370_1.html) to redirect
+- https://in.investing.com/news/a/a-4293269 - Doesn't redirect to actual url
+
 # Notes:
 
 ### TODO
 
-- Make sure empty outputs/files are ignored while parsing dask glob.
 - Generate a final s3 dump file that can be used.
 - Run the scraper as prefect flow
 - Scraping mode - Update/dump
@@ -98,12 +106,3 @@ The sitemaps for each website not always directly available in `robots.txt`. Goo
 - Attach floating IPs
 - Prevent **pycache**
 - Mount volume
-
-### More Sources
-
-The following news websites were in consideration but no daily sitemaps were found. Some effective strategies (requires more research) to iteratively retrieve a list of all articles are mentioned below.
-
-- https://www.livemint.com/api/cms/story/v2/11720327511606 - Check Content Length in Head. TODO: Check for market slug with a smaller query
-- https://timesofindia.indiatimes.com/articleshow/81896735.cms - Redirect not showing in head, No sitemap as well.
-- https://www.indiainfoline.com/news/top-share-market-news/page/14072 - New articles have no ID in the url. Seems to allow [old articles](https://www.indiainfoline.com/article/x/x-122110400370_1.html) to redirect
-- https://in.investing.com/news/a/a-4293269 - Doesn't redirect to actual url
