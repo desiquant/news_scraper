@@ -1,8 +1,10 @@
 from datetime import date
+from pathlib import Path
 from typing import Callable, Dict, Literal, Tuple
 
 import pandas as pd
 from scrapy.spiders import Request, SitemapSpider
+from scrapy.utils.project import data_path
 
 from ..utils import yesterday
 
@@ -19,6 +21,29 @@ class SitemapIndexSpider(SitemapSpider):
     }
 
     date_range: Tuple[date | str, date | str] = ("2020-01-01", yesterday)
+
+    # TODO: can make make a pull request to allow property decorator for custom_settings instead of dict.
+    @classmethod
+    def update_settings(cls, settings):
+        """
+        Overrides the default update_settings class to modify settings that include dynamic values from the spider and whose values can also be used in the middleware for eg. getting the output path of each spider.
+        """
+
+        output_file = Path(data_path("outputs", createdir=True)) / f"{cls.name}.jl"
+
+        custom_settings = cls.custom_settings or {}
+        custom_settings.update(
+            dict(
+                FEEDS={
+                    output_file: {
+                        "format": "jsonlines",
+                        "store_empty": False,
+                    }
+                }
+            )
+        )
+
+        settings.update(custom_settings, priority="spider")
 
     def start_requests(self):
         if self.sitemap_type == "daily":

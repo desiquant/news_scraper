@@ -74,7 +74,8 @@ def test_spider_crawl(spider: Spider):
             "FEEDS": {output_file: {"format": "jsonlines", "overwrite": True}},
             "HTTPCACHE_ENABLED": False,  # Do not cache requests, # ! TEMP: disable cache
             "LOG_FILE": "test-run.log",  # Prevent log from writing to stdout,
-        }
+        },
+        priority="cmdline",
     )
 
     p = multiprocessing.Process(
