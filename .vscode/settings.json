@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["economictimes", "scrapy"],
+  "cSpell.words": ["dask", "economictimes", "scrapy"],
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.codeActionsOnSave": {

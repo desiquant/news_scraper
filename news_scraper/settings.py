@@ -53,10 +53,13 @@ HTTPCACHE_STORAGE = "scrapy.extensions.httpcache.FilesystemCacheStorage"
 
 # Feed Settings
 FEED_EXPORT_ENCODING = "utf-8"
+FEED_EXPORTERS = {
+    "jsonlines": "news_scraper.exporters.OrderedJsonLinesItemExporter",
+}
 
 # Custom Settings
-SKIP_OUTPUT_URLS = True
-USE_FLOATING_IPS = True
+SKIP_OUTPUT_URLS = True  # skips fetching, parsing already existing urls in output
+USE_FLOATING_IPS = True  # uses additional floating ips if available on network
 
 
 # Future-proof Settings

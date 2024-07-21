@@ -5,32 +5,29 @@
 
 from datetime import datetime
 
-import scrapy
 from itemloaders.processors import Join, MapCompose, TakeFirst
+from scrapy import Field, Item
 from scrapy.loader import ItemLoader
 
 
-class NewsArticleItem(scrapy.Item):
-    url = scrapy.Field()
+class NewsArticleItem(Item):
+    url = Field()
 
-    title = scrapy.Field(input_processor=MapCompose(str.strip))
-    description = scrapy.Field(input_processor=MapCompose(str.strip))
-    author = scrapy.Field(input_processor=MapCompose(str.strip))
+    title = Field()
+    description = Field()
+    author = Field()
 
-    date_published = scrapy.Field()
-    date_modified = scrapy.Field()
+    date_published = Field()
+    date_modified = Field()
 
-    article_text = scrapy.Field(
-        input_processor=MapCompose(str.strip), output_processor=Join()
-    )
+    article_text = Field(output_processor=Join())
 
-    # is_paywall = scrapy.Field()
-
-    scrapy_scraped_at = scrapy.Field()
-    scrapy_parsed_at = scrapy.Field()
+    scrapy_scraped_at = Field()
+    scrapy_parsed_at = Field()
 
 
 class NewsArticleItemLoader(ItemLoader):
+    default_input_processor = MapCompose(str.strip)
     default_output_processor = TakeFirst()
 
     def __init__(self, *args, **kwargs):
