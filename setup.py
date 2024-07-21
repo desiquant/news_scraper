@@ -10,6 +10,7 @@ setup(
         "pandas",
         "netifaces",
         "fake-useragent",
+        "prefect",
     ],
     extras_require={
         "test": [
