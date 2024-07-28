@@ -1,12 +1,96 @@
 # DesiQuant News Scraper
 
-> A [scrapy](https://github.com/scrapy/scrapy) crawler that scrapes market news from Indian financial news outlets
-
-> ⚠️ **WARNING**: Work in progress. Will implement breaking frequently.
+A [scrapy](https://github.com/scrapy/scrapy) crawler that scrapes market news from Indian financial news outlets
 
 ![test status](https://github.com/desiquant/news_scraper/actions/workflows/test.yml/badge.svg)
 
-# Usage
+> ⚠️ **WARNING**: Work in progress. Will implement breaking frequently. The dataset is not updated everyday. The documentation and code requires more documentation and clarity.
+
+# Data Usage
+
+The data is periodically updated (every 1 hour) and saved to `s3://desiquant/data/news.parquet`. This file can be easily accessed and read as a pandas dataframe as follows:
+
+```python
+import s3fs
+import pandas as pd
+
+df = pd.read_parquet("s3://desiquant/data/news.parquet", storage_options={
+    "key": "sceN1eFOJQmBIWHNEMd8",
+    "secret": "w1BERx7F6LTe87sk9K9deoBcfYXNCwlol5xcLeev",
+    "endpoint_url": "http://data.desiquant.com:9000",
+})
+df
+```
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>url</th>
+      <th>title</th>
+      <th>article_text</th>
+      <th>author</th>
+      <th>date_modified</th>
+      <th>date_published</th>
+      <th>description</th>
+      <th>scrapy_parsed_at</th>
+      <th>scrapy_scraped_at</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>https://www.moneycontrol.com/news/business/mar...</td>
+      <td>Stay stock-specific and maintain strict stop-l...</td>
+      <td>It was a historic week (ended July 19) for dom...</td>
+      <td>Jigar Patel</td>
+      <td>2024-07-21T19:55:46+05:30</td>
+      <td>2024-07-21T19:55:46+05:30</td>
+      <td>A breach of 24,500 could halt the current mome...</td>
+      <td>2024-07-21 17:09:08.064765</td>
+      <td>2024-07-21 17:09:07+00:00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>https://www.moneycontrol.com/news/business/mar...</td>
+      <td>Wall St ends volatile session lower in afterma...</td>
+      <td>US stocks extended their slump on Friday as li...</td>
+      <td>Reuters</td>
+      <td>2024-07-20T10:17:59+05:30</td>
+      <td>2024-07-20T10:17:59+05:30</td>
+      <td>The Dow Jones Industrial Average fell 377.49 p...</td>
+      <td>2024-07-21 17:09:08.474808</td>
+      <td>2024-07-21 17:09:08+00:00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>https://www.moneycontrol.com/news/business/mar...</td>
+      <td>Trade Spotlight: How should you trade Federal ...</td>
+      <td>The benchmark indices saw profit booking after...</td>
+      <td>Sunil Shankar Matkar</td>
+      <td>2024-07-11T01:49:05+05:30</td>
+      <td>2024-07-11T01:46:54+05:30</td>
+      <td>If the Nifty 50 breaks 24,200, the immediate s...</td>
+      <td>2024-07-21 17:09:09.444510</td>
+      <td>2024-07-21 17:09:08+00:00</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+
+  </tbody>
+</table>
+
+# Scraper Usage
 
 Run a spider. The outputs are saved to `outputs/moneycontrol.jl` in JSONlines format
 
