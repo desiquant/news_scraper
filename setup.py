@@ -11,6 +11,8 @@ setup(
         "netifaces",
         "fake-useragent",
         "prefect",
+        "python-dotenv",
+        "boto3",
     ],
     extras_require={
         "test": [

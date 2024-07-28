@@ -16,3 +16,6 @@ demo.ipynb
 .terraform.lock.hcl
 terraform.tfvars
 *.tfstate*
+
+# secrets
+.env
