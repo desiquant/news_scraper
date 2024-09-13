@@ -12,3 +12,4 @@ from .outlookindia import *
 from .thehindu import *
 from .thehindubusinessline import *
 from .zeenews import *
+from .cnbctv18 import *
