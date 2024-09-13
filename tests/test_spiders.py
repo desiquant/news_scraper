@@ -25,6 +25,7 @@ from news_scraper.spiders import (
     TheHinduBusinessLineSpider,
     TheHinduSpider,
     ZeeNewsSpider,
+    CnbcTv18Spider,
 )
 
 
@@ -44,6 +45,7 @@ from news_scraper.spiders import (
         TheHinduSpider,
         TheHinduBusinessLineSpider,
         ZeeNewsSpider,
+        CnbcTv18Spider,
     ]
 )
 def spider(request):
