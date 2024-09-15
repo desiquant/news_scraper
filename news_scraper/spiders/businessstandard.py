@@ -33,7 +33,7 @@ class BusinessStandardSpider(SitemapIndexSpider):
         article.add_css("author", "span.MainStory_dtlauthinfo__u_CUx span::text")
         article.add_xpath(
             "article_text",
-            '//div[@id="parent_top_div"]/div/text() | //div[@class="MainStory_storycontent__Pe3ys"]/div/text()',
+            '//div[@id="parent_top_div"]/div/text() | //div[contains(@class, "MainStory_storycontent__Pe3ys") and contains(@class, "storycontent")]/div/text()',
         )
 
         # dates
