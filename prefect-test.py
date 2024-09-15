@@ -1,6 +1,9 @@
+# PROBLEM: The concurrent parallel execution of multiple scrapy spiders is being ignored because it works the flow runs from the script like prefect-test.py but doesn't stop after scraping when prefect executes the flow. This has something to do with multiprocessing context and I was unable to fix it. Moreover, the ETL part of the news_scraper is being moved to another python module and hence this file will be removed soon.
+
 from glob import glob
 
 from prefect import flow, task
+from prefect.task_runners import ConcurrentTaskRunner
 
 SPIDER_OUTPUT_PATHS = glob("data/outputs/*.jl")
 DATA_FILEPATH = "data/news.parquet"
@@ -33,7 +36,8 @@ def run_spider_process(spider):
 def run_spider(spider):
     import multiprocessing
 
-    ctx = multiprocessing.get_context("spawn")
+    # ctx = multiprocessing.get_context("spawn")
+    ctx = multiprocessing
     process = ctx.Process(target=run_spider_process, args=(spider,))
     process.start()
     process.join()
@@ -44,23 +48,23 @@ def run_spider(spider):
 #     run_spider("thehindu")
 
 
-@flow
+@flow(task_runner=ConcurrentTaskRunner())
 def run_spiders():
     spiders = [
         "businessstandard",
         "businesstoday",
-        "economictimes",
-        "financialexpress",
-        "firstpost",
-        "freepressjournal",
-        "indianexpress",
-        "moneycontrol",
-        "ndtvprofit",
-        "news18",
-        "outlookindia",
-        "thehindu",
-        "thehindubusinessline",
-        "zeenews",
+        # "economictimes",
+        # "financialexpress",
+        # "firstpost",
+        # "freepressjournal",
+        # "indianexpress",
+        # "moneycontrol",
+        # "ndtvprofit",
+        # "news18",
+        # "outlookindia",
+        # "thehindu",
+        # "thehindubusinessline",
+        # "zeenews",
     ]
 
     return run_spider.map(spiders)
@@ -113,11 +117,18 @@ def upload_to_s3():
 @flow(flow_run_name="run_spiders")
 def new_scraper():
     run_spiders()
-    convert_to_parquet()
-    upload_to_s3()
+    # convert_to_parquet()
+    # upload_to_s3()
 
 
 if __name__ == "__main__":
-    # run_spiders_A.serve(name="daily_news")
+    # new_scraper.serve(name="daily_news")
+
+    # works with ctx = multiprocessing.get_context("spawn")
+    # run_spiders()
+
+    # doesnt work
+    run_spiders.serve(name="daily_news")
+
     # new_scraper()
-    upload_to_s3()
+    # upload_to_s3()
