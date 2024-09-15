@@ -11,11 +11,5 @@ data/
 # local testing
 demo.ipynb
 
-# terraform
-.terraform/
-.terraform.lock.hcl
-terraform.tfvars
-*.tfstate*
-
 # secrets
 .env
