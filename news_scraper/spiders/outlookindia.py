@@ -8,31 +8,34 @@ class OutlookIndiaSpider(SitemapIndexSpider):
     name = "outlookindia"
 
     sitemap_type = "daily"
-    allowed_domains = ["outlookindia.com"]
+    allowed_domains = ["outlookbusiness.com"]
     sitemap_patterns = [
-        "https://business.outlookindia.com/sitemap/sitemap-daily-{year}-{month}-{day}.xml",
+        "https://www.outlookbusiness.com/sitemap/sitemap-daily-{year}-{month}-{day}.xml"
     ]
 
     sitemap_rules = [(r"/markets/", "parse")]
 
     def parse(self, response):
         """
-        sample article: https://business.outlookindia.com/markets/over-300-returns-in-2024-why-cochin-shipyard-continues-to-shine-at-stock-markets
+        sample article: https://www.outlookbusiness.com/markets/over-300-returns-in-2024-why-cochin-shipyard-continues-to-shine-at-stock-markets
         """
 
         article = NewsArticleItemLoader(item=NewsArticleItem(), response=response)
 
         # content
         article.add_xpath("title", "//h1//text()")
-        article.add_css("description", 'div[data-test-id="subheadline"]::text')
-        article.add_css("author", 'a[aria-label="author-name"]::text')
-        article.add_xpath("article_text", '//div[@data-test-id="text"]/p/text()')
+        article.add_css("description", 'p.subcap-story::text')
+        article.add_css("author", 'div.auth-div-button::text')
+        article.add_xpath("article_text", '//div[@id="articleBody"]//p/text()')
 
-        # dates
-        ld_data = response.css("script[type='application/ld+json']::text")[1].get()
-        ld_json = json.loads(ld_data) if ld_data else {}
+        article.add_css(
+        "date_published",
+        'meta[property="article:published_time"]::attr(content)'
+        )
 
-        article.add_value("date_published", ld_json.get("datePublished"))
-        article.add_value("date_modified", ld_json.get("dateModified"))
+        article.add_css(
+        "date_modified",
+        'meta[property="article:modified_time"]::attr(content)'
+        )
 
         yield article.load_item()
