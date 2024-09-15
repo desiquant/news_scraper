@@ -1,8 +1,28 @@
-# Scrapy default settings: https://github.com/scrapy/scrapy/blob/master/scrapy/settings/default_settings.py
-
 import os
+from datetime import datetime
 
 from .utils import get_interface_ips
+
+###################
+# Custom Settings #
+###################
+
+# scrapes articles only within the given date range
+DATE_RANGE = (datetime.today(), datetime.now())
+# DATE_RANGE = ("2020-01-01", datetime.now())
+
+SKIP_OUTPUT_URLS = True  # skips fetching, parsing already existing urls in output
+USE_FLOATING_IPS = True  # uses additional floating ips if available on network
+
+
+####################
+# Default Settings #
+####################
+
+# Scrapy provides in-built settings, most of which are auto-populated in new projects.
+# We've modified a few settings for our use case.
+# Default settings can be found here: https://github.com/scrapy/scrapy/blob/master/scrapy/settings/default_settings.py
+
 
 # Basic Settings
 BOT_NAME = "news_scraper"
@@ -56,10 +76,6 @@ FEED_EXPORT_ENCODING = "utf-8"
 FEED_EXPORTERS = {
     "jsonlines": "news_scraper.exporters.OrderedJsonLinesItemExporter",
 }
-
-# Custom Settings
-SKIP_OUTPUT_URLS = True  # skips fetching, parsing already existing urls in output
-USE_FLOATING_IPS = True  # uses additional floating ips if available on network
 
 
 # Future-proof Settings

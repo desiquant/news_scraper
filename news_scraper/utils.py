@@ -7,8 +7,6 @@ from scrapy import Spider
 
 ua = UserAgent()
 
-yesterday = (pd.Timestamp.now() - pd.Timedelta(days=1)).normalize()
-
 
 def get_interface_ips(interface="eth0"):
     """

@@ -2,14 +2,16 @@
 .venv/
 *.egg-info/
 __pycache__/
+build/
 
 # scraper
 .scrapy/
 data/
 *.log
 
-# local testing
-demo.ipynb
+# tests
+outputs-*/
+.pytest_*/
 
 # secrets
 .env
