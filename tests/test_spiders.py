@@ -25,6 +25,7 @@ from news_scraper.spiders import (
     TheHinduBusinessLineSpider,
     TheHinduSpider,
     ZeeNewsSpider,
+    CnbcTv18Spider,
 )
 
 
@@ -44,6 +45,7 @@ from news_scraper.spiders import (
         TheHinduSpider,
         TheHinduBusinessLineSpider,
         ZeeNewsSpider,
+        CnbcTv18Spider,
     ]
 )
 def spider(request):
@@ -123,7 +125,7 @@ def test_spider_crawl(spider: Spider):
         "https://www.moneycontrol.com/news/business/markets/stock-radar-power-grid-aarti-industries-zydus-lifesciences-ge-power-life-insurance-corporation-sula-vineyards-state-bank-of-india-irb-infrastructure-meson-valves-jtl-industries-in-focus-12766424.html",
         "https://www.ndtvprofit.com/markets/jupiter-wagons-raises-rs-800-crore-from-qip-issue-to-institutional-buyers",
         "https://www.news18.com/business/markets/hcl-tech-announces-interim-dividend-of-rs-12-per-share-for-fy25-check-record-date-8963502.html",
-        "https://business.outlookindia.com/markets/over-300-returns-in-2024-why-cochin-shipyard-continues-to-shine-at-stock-markets",
+        "https://www.outlookbusiness.com/markets/over-300-returns-in-2024-why-cochin-shipyard-continues-to-shine-at-stock-markets",
         "https://www.thehindu.com/business/markets/markets-decline-in-early-trade/article68380310.ece",
         "https://www.thehindubusinessline.com/markets/stock-markets/brokerage-views-on-dabur-emkay-global-and-dart-insights/article68380231.ece",
         "https://zeenews.india.com/markets/pharma-healthcare-stocks-top-sectoral-gainers-in-trade-2716060.html",

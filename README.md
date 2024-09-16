@@ -1,6 +1,7 @@
 # DesiQuant: News Scraper
 
 A [scrapy](https://github.com/scrapy/scrapy) crawler that scrapes market news from Indian financial news outlets
+A [scrapy](https://github.com/scrapy/scrapy) crawler that scrapes market news from Indian financial news outlets
 
 ![test status](https://github.com/desiquant/news_scraper/actions/workflows/test.yml/badge.svg)
 
