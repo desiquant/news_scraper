@@ -13,5 +13,5 @@ data/
 outputs-*/
 .pytest_*/
 
-# secrets
-.env
+# dev
+demo.ipynb
