@@ -3,7 +3,6 @@ import os
 import netifaces
 import pandas as pd
 from fake_useragent import UserAgent
-from scrapy import Spider
 
 ua = UserAgent()
 
@@ -20,14 +19,17 @@ def get_interface_ips(interface="eth0"):
         return []
 
 
-def get_output_urls(output_file: str) -> list[str]:
-    """
-    Retrieve a list of urls that are already saved in output file for a spider.
-    """
+def get_spider_output(output_file: str) -> pd.DataFrame:
+    """Returns the saved spider output as a pandas DataFrame"""
 
     if os.path.isfile(output_file):
         df = pd.read_json(output_file, lines=True)
-        if not df.empty:
-            return list(df["url"].unique())
 
-    return []
+        # parse some required date columns
+        for c in ["date_published", "date_modified"]:
+            df[c] = pd.to_datetime(df[c], format="mixed").dt.tz_localize(None)
+
+    else:
+        df = pd.DataFrame()
+
+    return df

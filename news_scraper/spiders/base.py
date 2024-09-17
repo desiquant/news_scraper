@@ -6,7 +6,7 @@ import pandas as pd
 from scrapy.spiders import Request, SitemapSpider
 from scrapy.utils.project import data_path
 
-from ..settings import DATE_RANGE
+from ..utils import get_spider_output
 
 
 class SitemapIndexSpider(SitemapSpider):
@@ -30,6 +30,7 @@ class SitemapIndexSpider(SitemapSpider):
         # we are using data_path to colocate outputs and httpcache
         output_file = Path(data_path("outputs", createdir=True)) / f"{cls.name}.jl"
 
+        # we are setting the output filepath here and not in settings.py so that we have a static filepath
         custom_settings = cls.custom_settings or {}
         custom_settings.update(
             dict(
@@ -54,12 +55,37 @@ class SitemapIndexSpider(SitemapSpider):
         else:
             raise NotImplementedError(self.sitemap_type)
 
+        # calculate appropriate date_range
+        date_range = self.settings.getlist("DATE_RANGE")
+
+        # restrict date_range based on existing scraped data.
+        if self.settings.getbool("SKIP_OUTPUT_URLS"):
+            for output_file, _ in self.settings.getdict("FEEDS").items():
+                df = get_spider_output(output_file)
+
+                if df.empty:
+                    continue
+
+                # update starting date from last published/modified article
+                date_range[0] = max(
+                    df["date_modified"].max(),
+                    df["date_published"].max(),
+                    date_range[0],
+                )
+                self.logger.info(
+                    "Already scraped upto %s in: %s" % (date_range[0], output_file)
+                )
+
         # restrict sitemap date range
+        # note: the below ensures at least one sitemap is always scraped
         sitemap_dates = pd.date_range(
-            start=DATE_RANGE[0],
-            end=DATE_RANGE[1],
+            start=pd.Timestamp(date_range[0]).normalize(),
+            end=pd.Timestamp(date_range[1]).normalize(),
             freq=sitemap_frequency,
         )[::-1]
+
+        self.logger.info("scraping DATE_RANGE: %s", date_range)
+        self.logger.info("scraping sitemaps: %s", sitemap_dates)
 
         sitemaps_processed = 0
         limit_sitemaps = self.settings.getint("CLOSESPIDER_ITEMCOUNT", 0) > 0

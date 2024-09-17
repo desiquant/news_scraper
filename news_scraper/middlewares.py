@@ -8,7 +8,7 @@ import itertools
 from scrapy import Spider, crawler, signals
 from scrapy.exceptions import IgnoreRequest
 
-from .utils import get_interface_ips, get_output_urls
+from .utils import get_interface_ips, get_spider_output
 
 
 class NewsScraperDownloaderMiddleware:
@@ -36,7 +36,9 @@ class NewsScraperDownloaderMiddleware:
         # load already parsed urls
         if spider.settings.getbool("SKIP_OUTPUT_URLS"):
             for output_file, _ in spider.settings.getdict("FEEDS").items():
-                self.output_urls = get_output_urls(output_file)
+                df = get_spider_output(output_file)
+                self.output_urls = list(df["url"].unique()) if not df.empty else []
+
                 spider.logger.info(
                     "Already scraped %s URLs in: %s"
                     % (len(self.output_urls), output_file)
