@@ -17,7 +17,10 @@ class ZeeNewsSpider(SitemapIndexSpider):
         "month": lambda d: d.strftime("%b").lower(),
     }
 
-    sitemap_rules = [(r"/markets/", "parse")]
+    sitemap_rules = [
+        (r"/markets/", "parse"),
+        (r"/economy/", "parse"),
+    ]
 
     def parse(self, response):
         """
