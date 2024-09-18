@@ -57,9 +57,13 @@ class SitemapIndexSpider(SitemapSpider):
 
         # calculate appropriate date_range
         date_range = self.settings.getlist("DATE_RANGE")
+        date_range = list(map(pd.Timestamp, date_range))  # convert to timestamp
+
+        scrape_mode = self.settings.get("SCRAPE_MODE")
+        self.logger.info("SCRAPE_MODE: %s", scrape_mode)
 
         # restrict date_range based on existing scraped data.
-        if self.settings.getbool("SKIP_OUTPUT_URLS"):
+        if scrape_mode == "update":
             for output_file, _ in self.settings.getdict("FEEDS").items():
                 df = get_spider_output(output_file)
 

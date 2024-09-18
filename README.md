@@ -118,6 +118,7 @@ Deploying the spider in production involves the following steps:
 | `SKIP_OUTPUT_URLS` | Skips fetching and parsing of articles that already exist in the output of a spider. | `True`                               |
 | `USE_FLOATING_IPS` | Uses all available floating IPs on `eth0` to prevent IP-based blocks while scraping. | `True`                               |
 | `DATE_RANGE`       | Gathers and scrapes articles within the specified date range from the sitemap.       | `(datetime.today(), datetime.now())` |
+| `SCRAPE_MODE`      | Dump the entire date_range or Check for new articles in the date_range               | `"update"`                           |
 
 - **Infrastructure**:
 

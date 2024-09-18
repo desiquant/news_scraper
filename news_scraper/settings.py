@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+from typing import Literal
 
 from .utils import get_interface_ips
 
@@ -10,6 +11,10 @@ from .utils import get_interface_ips
 # scrapes articles only within the given date range
 DATE_RANGE = (datetime.today(), datetime.now())  # scrapes only articles published today
 # DATE_RANGE = ("2020-01-01", datetime.now()) # scrape all articles from 2020 until today
+
+# SCRAPE_MODE = dump -> scrapes all articles in date_range
+# SCRAPE_MODE = update -> starts from the last scraped date in output
+SCRAPE_MODE: Literal["dump", "update"] = "update"
 
 SKIP_OUTPUT_URLS = True  # skips fetching, parsing already existing urls in output
 USE_FLOATING_IPS = True  # uses additional floating ips if available on network
