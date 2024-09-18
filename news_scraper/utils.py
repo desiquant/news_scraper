@@ -27,7 +27,8 @@ def get_spider_output(output_file: str) -> pd.DataFrame:
 
         # parse some required date columns
         for c in ["date_published", "date_modified"]:
-            df[c] = pd.to_datetime(df[c], format="mixed").dt.tz_localize(None)
+            df[c] = pd.to_datetime(df[c], utc=True, errors="coerce")
+            df[c] = df[c].dt.tz_localize(None)
 
     else:
         df = pd.DataFrame()
