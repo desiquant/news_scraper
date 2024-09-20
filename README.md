@@ -21,6 +21,7 @@ A [scrapy](https://github.com/scrapy/scrapy) crawler that scrapes market news fr
 | [Zee News](https://zeenews.india.com)                           | [Monthly](https://zeenews.india.com/sitemaps/sitemap-2018-feb.xml)                               |
 | [Financial Express](https://www.financialexpress.com)           | [Daily](https://www.financialexpress.com/sitemap.xml?yyyy=2024&mm=07&dd=08)                      |
 | [Indian Express](https://indianexpress.com)                     | [Daily](https://indianexpress.com/sitemap.xml?yyyy=2024&mm=07&dd=08)                             |
+| [CNBCTV18](https://cnbctv18.com)                                | [Daily](https://www.cnbctv18.com/commonfeeds/v1/cne/sitemap/daily/2024-07-08.xml)                |
 
 ## Data Usage
 
