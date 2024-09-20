@@ -16,6 +16,7 @@ from news_scraper.spiders import (
     TheHinduBusinessLineSpider,
     TheHinduSpider,
     ZeeNewsSpider,
+    CnbcTv18Spider
 )
 
 settings = get_project_settings()
@@ -38,5 +39,5 @@ process.crawl(OutlookIndiaSpider)
 process.crawl(TheHinduSpider)
 process.crawl(TheHinduBusinessLineSpider)
 process.crawl(ZeeNewsSpider)
-
+process.crawl(CnbcTv18Spider)
 process.start()
