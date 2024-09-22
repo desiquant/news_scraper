@@ -10,7 +10,7 @@ class CnbcTv18Spider(SitemapIndexSpider):
         "https://www.cnbctv18.com/commonfeeds/v1/cne/sitemap/daily/{year}-{month}-{day}.xml",
     ]
     
-    sitemap_rules = [(r"/market/", "parse")]
+    sitemap_rules = [(r"/market/", "parse"),(r"/business/", "parse"),(r"/economy/", "parse")]
     
     def parse(self, response):
         """

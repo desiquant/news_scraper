@@ -11,7 +11,7 @@ class FinancialExpressSpider(SitemapIndexSpider):
         "https://www.financialexpress.com/sitemap.xml?yyyy={year}&mm={month}&dd={day}"
     ]
 
-    sitemap_rules = [(r"/market/", "parse")]
+    sitemap_rules = [(r"/market/", "parse"),(r"/business/", "parse")]
 
     def parse(self, response):
         """

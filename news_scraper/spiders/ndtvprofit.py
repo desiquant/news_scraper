@@ -11,7 +11,7 @@ class NDTVProfitSpider(SitemapIndexSpider):
         "https://www.ndtvprofit.com/sitemap/sitemap-daily-{year}-{month}-{day}.xml",
     ]
 
-    sitemap_rules = [(r"/markets/", "parse")]
+    sitemap_rules = [(r"/markets/", "parse"),(r"/business/", "parse")]
 
     def parse(self, response):
         """

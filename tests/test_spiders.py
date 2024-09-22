@@ -129,6 +129,7 @@ def test_spider_crawl(spider: Spider):
         "https://www.thehindu.com/business/markets/markets-decline-in-early-trade/article68380310.ece",
         "https://www.thehindubusinessline.com/markets/stock-markets/brokerage-views-on-dabur-emkay-global-and-dart-insights/article68380231.ece",
         "https://zeenews.india.com/markets/pharma-healthcare-stocks-top-sectoral-gainers-in-trade-2716060.html",
+        
     ],
 )
 def test_spider_parse(url, snapshot):
