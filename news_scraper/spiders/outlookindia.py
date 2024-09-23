@@ -13,7 +13,7 @@ class OutlookIndiaSpider(SitemapIndexSpider):
         "https://www.outlookbusiness.com/sitemap/sitemap-daily-{year}-{month}-{day}.xml"
     ]
 
-    sitemap_rules = [(r"/markets/", "parse")]
+    sitemap_rules = [(r"/markets/", "parse"),(r"/corporate/", "parse")]
 
     def parse(self, response):
         """

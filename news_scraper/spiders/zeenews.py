@@ -20,6 +20,8 @@ class ZeeNewsSpider(SitemapIndexSpider):
     sitemap_rules = [
         (r"/markets/", "parse"),
         (r"/economy/", "parse"),
+        (r"/business/", "parse"),
+        (r"/companies/", "parse"),
     ]
 
     def parse(self, response):

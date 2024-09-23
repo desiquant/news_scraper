@@ -12,7 +12,7 @@ class MoneyControlSpider(SitemapIndexSpider):
         "https://www.moneycontrol.com/news/sitemap/sitemap-post-{year}-{month}.xml",
     ]
 
-    sitemap_rules = [(r"/news/business/markets/", "parse")]
+    sitemap_rules = [(r"/news/business/markets/", "parse"),(r"/news/business/economy/", "parse"),(r"/news/business/companies/", "parse"),(r"/news/business/earnings/", "parse")]
 
     custom_settings = {"USER_AGENT": ua.random}
 

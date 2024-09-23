@@ -12,7 +12,7 @@ class TheHinduBusinessLineSpider(SitemapIndexSpider):
         "https://www.thehindubusinessline.com/sitemap/archive/all/{year}{month}{day}_2.xml",
     ]
 
-    sitemap_rules = [(r"/markets/", "parse")]
+    sitemap_rules = [(r"/markets/", "parse"),(r"/economy/", "parse")]
 
     def parse(self, response):
         """

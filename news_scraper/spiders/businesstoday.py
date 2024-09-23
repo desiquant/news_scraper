@@ -11,7 +11,7 @@ class BusinessTodaySpider(SitemapIndexSpider):
         "https://www.businesstoday.in/rssfeeds/date-wise-story-sitemap.xml?yyyy={year}&mm={month}&dd={day}",
     ]
 
-    sitemap_rules = [(r"/markets/", "parse")]
+    sitemap_rules = [(r"/markets/", "parse"),(r"/industry/", "parse")]
 
     def parse(self, response):
         """
