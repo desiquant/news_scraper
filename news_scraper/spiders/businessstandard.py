@@ -16,7 +16,7 @@ class BusinessStandardSpider(SitemapIndexSpider):
         "month": lambda d: d.strftime("%B").lower(),
     }
 
-    sitemap_rules = [(r"/markets/", "parse"),(r"article/companies/", "parse"),(r"article/economy-policy/", "parse")]
+    sitemap_rules = [(r"/markets/", "parse"),(r"/companies/", "parse"),(r"/economy-policy/", "parse")]
 
     custom_settings = {"USER_AGENT": ua.random}
 
