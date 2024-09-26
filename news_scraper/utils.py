@@ -23,7 +23,7 @@ def get_spider_output(output_file: str) -> pd.DataFrame:
     """Returns the saved spider output as a pandas DataFrame"""
 
     if os.path.isfile(output_file):
-        df = pd.read_json(output_file, lines=True)
+        df = pd.read_csv(output_file)
 
         # parse some required date columns
         for c in ["date_published", "date_modified"]:

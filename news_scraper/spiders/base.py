@@ -28,7 +28,7 @@ class SitemapIndexSpider(SitemapSpider):
         """
 
         # we are using data_path to colocate outputs and httpcache
-        output_file = Path(data_path("outputs", createdir=True)) / f"{cls.name}.jl"
+        output_file = Path(data_path("outputs", createdir=True)) / f"{cls.name}.csv"
 
         # we are setting the output filepath here and not in settings.py so that we have a static filepath
         custom_settings = cls.custom_settings or {}
@@ -36,7 +36,7 @@ class SitemapIndexSpider(SitemapSpider):
             dict(
                 FEEDS={
                     output_file: {
-                        "format": "jsonlines",
+                        "format": "csv",
                         "store_empty": False,
                     }
                 }

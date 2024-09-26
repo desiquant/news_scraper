@@ -31,7 +31,7 @@ You can readily consume the data without setting up any infrastructure. The data
 
 The entire consolidated data is accessible at `s3://desiquant/data/news.parquet`
 
-The individual news publisher data files are accessible at `s3://desiquant/data/news/cnbctv18.jl`. To view a list of all available publishers you can check out [below](#local-development)
+The individual news publisher data files are accessible at `s3://desiquant/data/news/cnbctv18.csv`. To view a list of all available publishers you can check out [below](#local-development)
 
 ##### Pandas Usage
 
@@ -71,7 +71,7 @@ To scrape all market articles from [MoneyControl](https://moneycontrol.com), you
 scrapy crawl moneycontrol
 ```
 
-That's it! You can now view the scraped news articles at `data/outputs/moneycontrol.jl`. The articles are saved in [JSON Lines](https://jsonlines.org/examples/) format in a structured format like:
+That's it! You can now view the scraped news articles at `data/outputs/moneycontrol.csv`. The articles are saved in CSV format in a structured format like:
 
 ```json
 {

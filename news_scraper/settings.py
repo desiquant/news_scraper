@@ -78,9 +78,6 @@ HTTPCACHE_STORAGE = "scrapy.extensions.httpcache.FilesystemCacheStorage"
 
 # Feed Settings
 FEED_EXPORT_ENCODING = "utf-8"
-FEED_EXPORTERS = {
-    "jsonlines": "news_scraper.exporters.OrderedJsonLinesItemExporter",
-}
 
 
 # Future-proof Settings

@@ -13,6 +13,7 @@ from scrapy.utils.project import Settings, get_project_settings
 from news_scraper.spiders import (
     BusinessStandardSpider,
     BusinessTodaySpider,
+    CnbcTv18Spider,
     EconomicTimesSpider,
     FinancialExpressSpider,
     FirstPostSpider,
@@ -25,7 +26,6 @@ from news_scraper.spiders import (
     TheHinduBusinessLineSpider,
     TheHinduSpider,
     ZeeNewsSpider,
-    CnbcTv18Spider,
 )
 
 
@@ -59,7 +59,7 @@ def run_spider(spider: Spider, settings: Settings):
 
 
 def test_spider_crawl(spider: Spider):
-    output_file = f"outputs-crawl-test/{spider.name}.jl"
+    output_file = f"outputs-crawl-test/{spider.name}.csv"
 
     # remove output if exists
     if os.path.isfile(output_file):
@@ -73,7 +73,7 @@ def test_spider_crawl(spider: Spider):
             "CONCURRENT_REQUESTS": 5,  # If default concurrent is used, it ignores itemcount limit
             "CLOSESPIDER_TIMEOUT": 30,  # Stop after 30 seconds,
             # Save the outputs to a new temporary file
-            "FEEDS": {output_file: {"format": "jsonlines", "overwrite": True}},
+            "FEEDS": {output_file: {"format": "csv", "overwrite": True}},
             "HTTPCACHE_ENABLED": False,  # Do not cache requests, # ! TEMP: disable cache
             "LOG_FILE": "test-run.log",  # Prevent log from writing to stdout,
         },
@@ -94,19 +94,19 @@ def test_spider_crawl(spider: Spider):
     if not os.path.isfile(output_file):
         raise FileNotFoundError(output_file)
 
-    df = pd.read_json(output_file, lines=True)
+    df = pd.read_csv(output_file)
 
     output_cols = set(df.columns)
     required_cols = {
-        "url",
-        "title",
-        "description",
-        "author",
-        "date_published",
-        "date_modified",
         "article_text",
-        "scrapy_scraped_at",
+        "author",
+        "date_modified",
+        "date_published",
+        "description",
         "scrapy_parsed_at",
+        "scrapy_scraped_at",
+        "title",
+        "url",
     }
 
     assert output_cols == required_cols
