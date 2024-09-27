@@ -27,3 +27,10 @@ jobs:
 
       - name: Run tests
         run: pytest
+
+      - name: Upload Scrapy Log
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: scrapy-test-log
+        path: test-run.log
