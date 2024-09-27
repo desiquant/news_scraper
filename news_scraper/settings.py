@@ -14,7 +14,7 @@ DATE_RANGE = (datetime.today(), datetime.now())  # scrapes only articles publish
 
 # SCRAPE_MODE = dump -> scrapes all articles in date_range
 # SCRAPE_MODE = update -> starts from the last scraped date in output
-SCRAPE_MODE: Literal["dump", "update"] = "update"
+SCRAPE_MODE: Literal["dump", "update"] = "dump"
 
 SKIP_OUTPUT_URLS = True  # skips fetching, parsing already existing urls in output
 USE_FLOATING_IPS = True  # uses additional floating ips if available on network
@@ -78,6 +78,9 @@ HTTPCACHE_STORAGE = "scrapy.extensions.httpcache.FilesystemCacheStorage"
 
 # Feed Settings
 FEED_EXPORT_ENCODING = "utf-8"
+FEED_EXPORTERS = {
+    "csv": "news_scraper.exporters.QuotedCsvItemExporter",
+}
 
 
 # Future-proof Settings
