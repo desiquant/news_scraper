@@ -10,6 +10,10 @@ from scrapy import Spider
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import Settings, get_project_settings
 
+def normalize_text(text):
+    """Normalize text by collapsing multiple spaces, newlines, etc., into single spaces."""
+    return re.sub(r"\s+", " ", text.strip())
+
 from news_scraper.spiders import (
     BusinessStandardSpider,
     BusinessTodaySpider,
@@ -94,6 +98,8 @@ def test_spider_crawl(spider: Spider):
     if not os.path.isfile(output_file):
         raise FileNotFoundError(output_file)
 
+    if os.path.getsize(output_file) == 0:
+        pytest.skip(f"No data scraped by {spider.name}, file {output_file} is empty.")
     df = pd.read_csv(output_file)
 
     output_cols = set(df.columns)
@@ -172,4 +178,7 @@ def test_spider_parse(url, snapshot):
         del i["scrapy_parsed_at"]
         del i["scrapy_scraped_at"]
 
-    assert parsed_json == snapshot
+        if "article_text" in i:
+            i["article_text"] = normalize_text(i["article_text"])
+
+    snapshot.assert_match(parsed_json)

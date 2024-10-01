@@ -26,7 +26,7 @@ class IndianExpressSpider(SitemapIndexSpider):
         article.add_css("author", "div.editor a::text")
         article.add_xpath(
             "article_text",
-            '//div[@id="pcl-full-content"]/p/text() | //div[contains(@class,"ie-premium-content-block")]/p/text()',
+            '//div[@id="pcl-full-content"]//p//text() | //div[contains(@class,"ie-premium-content-block")]//p//text()'
         )
 
         # dates
