@@ -12,6 +12,8 @@ from scrapy.utils.project import Settings, get_project_settings
 
 def normalize_text(text):
     """Normalize text by collapsing multiple spaces, newlines, etc., into single spaces."""
+    if text is None:
+        return ""
     return re.sub(r"\s+", " ", text.strip())
 
 from news_scraper.spiders import (
