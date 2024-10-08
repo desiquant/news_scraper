@@ -34,3 +34,14 @@ jobs:
         with:
           name: scrapy-test-log
           path: test-run.log
+
+      - name: Notify Slack on failure
+        if: failure()
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: Python tests failed in the GitHub Actions workflow!
+          author_name: GitHub Actions
+          fields: repo,message,commit,author,action,eventName,ref,workflow
