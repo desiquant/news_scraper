@@ -1,7 +1,10 @@
 import os
 from datetime import datetime
 from typing import Literal
+from dotenv import load_dotenv
 
+# Load environment variables from .env file
+load_dotenv()
 from .utils import get_interface_ips
 
 ###################
@@ -18,7 +21,7 @@ SCRAPE_MODE: Literal["dump", "update"] = "dump"
 
 SKIP_OUTPUT_URLS = True  # skips fetching, parsing already existing urls in output
 USE_FLOATING_IPS = True  # uses additional floating ips if available on network
-
+USE_PROXY = bool(os.getenv("PROXY_URL"))
 
 ####################
 # Default Settings #

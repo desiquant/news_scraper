@@ -3,12 +3,14 @@ import multiprocessing
 import os
 import re
 import subprocess
-
+from dotenv import load_dotenv
 import pandas as pd
 import pytest
 from scrapy import Spider
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import Settings, get_project_settings
+# Load environment variables from .env file
+load_dotenv()
 
 def normalize_text(text):
     """Normalize text by collapsing multiple spaces, newlines, etc., into single spaces."""
@@ -85,6 +87,14 @@ def test_spider_crawl(spider: Spider):
         },
         priority="cmdline",
     )
+
+    if spider.name == "moneycontrol" and bool(os.getenv("PROXY_URL")):
+        settings.update(
+            {
+                "HTTP_PROXY": os.getenv("PROXY_URL"),  # Assuming you have this set in your .env
+                "USE_PROXY": True,  # Set to True to use the proxy
+            }
+        )
 
     p = multiprocessing.Process(
         target=run_spider,

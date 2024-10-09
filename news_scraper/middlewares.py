@@ -4,10 +4,13 @@
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
 import itertools
-
+import os
 from scrapy import Spider, crawler, signals
 from scrapy.exceptions import IgnoreRequest
+from dotenv import load_dotenv
 
+# Load environment variables from .env file
+load_dotenv()
 from .utils import get_interface_ips, get_spider_output
 
 
@@ -50,8 +53,12 @@ class NewsScraperDownloaderMiddleware:
             spider.logger.info("Ignoring Request (already in output): %s", request.url)
             raise IgnoreRequest
 
-        # sample web proxy usage
-        # request.meta["proxy"] = "http://user:pass@brd.superproxy.io:22225"
+        # if spider.settings.getbool("USE_PROXY"):
+        #   request.meta["proxy"] = "http://user:pass@brd.superproxy.io:22225"
+        if spider.name == "moneycontrol" and spider.settings.getbool("USE_PROXY"):
+            proxy_url = os.getenv("PROXYURL")
+            request.meta["proxy"] = proxy_url
+            spider.logger.info("Using proxy")
 
         # use all ips available on server
         if spider.settings.getbool("USE_FLOATING_IPS"):

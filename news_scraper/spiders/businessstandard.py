@@ -34,6 +34,7 @@ class BusinessStandardSpider(SitemapIndexSpider):
         article.add_xpath(
             "article_text",
             '//div[@id="parent_top_div"]/div/text() | //div[contains(@class, "MainStory_storycontent__Pe3ys") and contains(@class, "storycontent")]/p/text() | //div[contains(@class, "MainStory_storycontent__Pe3ys") and contains(@class, "storycontent")]//div/text()',
+            # multiple selectors included to robustly handle data extraction across urls
         )
 
         # dates
