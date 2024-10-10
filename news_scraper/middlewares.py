@@ -55,10 +55,10 @@ class NewsScraperDownloaderMiddleware:
 
         # if spider.settings.getbool("USE_PROXY"):
         #   request.meta["proxy"] = "http://user:pass@brd.superproxy.io:22225"
-        if spider.name == "moneycontrol" and spider.settings.getbool("USE_PROXY"):
-            proxy_url = os.getenv("PROXYURL")
+        if spider.settings.getbool("USE_PROXY"):
+            proxy_url = os.getenv("PROXY_URL")
             request.meta["proxy"] = proxy_url
-            spider.logger.info("Using proxy")
+            spider.logger.info(f"Using proxy:{proxy_url}")
 
         # use all ips available on server
         if spider.settings.getbool("USE_FLOATING_IPS"):

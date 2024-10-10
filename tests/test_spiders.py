@@ -91,11 +91,18 @@ def test_spider_crawl(spider: Spider):
     if spider.name == "moneycontrol" and bool(os.getenv("PROXY_URL")):
         settings.update(
             {
-                "HTTP_PROXY": os.getenv("PROXY_URL"),  # Assuming you have this set in your .env
+                "HTTP_PROXY": os.getenv("PROXY_URL"),
                 "USE_PROXY": True,  # Set to True to use the proxy
             }
         )
-
+    else:
+        # Set an else block to handle other spiders or cases without proxy
+        settings.update(
+            {
+                "USE_PROXY": False,  # Disable proxy usage
+            }
+        )
+    
     p = multiprocessing.Process(
         target=run_spider,
         args=(
