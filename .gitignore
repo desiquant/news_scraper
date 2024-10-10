@@ -18,3 +18,5 @@ demo.ipynb
 
 # remote-tests
 /bin/
+.env
+**/.env

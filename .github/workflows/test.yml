@@ -13,6 +13,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      PROXY_URL: ${{ secrets.PROXY_URL }}
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
