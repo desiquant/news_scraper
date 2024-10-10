@@ -13,6 +13,14 @@ from dotenv import load_dotenv
 load_dotenv()
 from .utils import get_interface_ips, get_spider_output
 
+#Mask the sensitive parts of the proxy URL (user:password).
+def mask_proxy_url(proxy_url):
+    if '@' in proxy_url:
+        proxy_parts = proxy_url.split('@')
+        if ':' in proxy_parts[0]:
+            masked_user = proxy_parts[0].split(':')[0] + ":****"
+            return masked_user + "@" + proxy_parts[1]
+    return proxy_url
 
 class NewsScraperDownloaderMiddleware:
     floating_ips = get_interface_ips()
@@ -57,8 +65,9 @@ class NewsScraperDownloaderMiddleware:
         #   request.meta["proxy"] = "http://user:pass@brd.superproxy.io:22225"
         if spider.settings.getbool("USE_PROXY"):
             proxy_url = os.getenv("PROXY_URL")
+            masked_proxy_url=mask_proxy_url(proxy_url)
             request.meta["proxy"] = proxy_url
-            spider.logger.info(f"Using proxy:{proxy_url}")
+            spider.logger.info(f"Using proxy:{masked_proxy_url}")
 
         # use all ips available on server
         if spider.settings.getbool("USE_FLOATING_IPS"):
