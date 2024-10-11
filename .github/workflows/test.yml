@@ -41,9 +41,7 @@ jobs:
         if: failure()
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          text: Python tests failed in the GitHub Actions workflow!
-          author_name: GitHub Actions
-          fields: repo,message,commit,author,action,eventName,ref,workflow
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data "{\"text\":\"⚠️ Python tests failed in the GitHub Actions workflow for repository: ${{ github.repository }}. Branch: ${{ github.ref }}. Check the workflow here: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
