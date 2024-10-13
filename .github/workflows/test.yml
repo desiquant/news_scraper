@@ -13,6 +13,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      PROXY_URL: ${{ secrets.PROXY_URL }}
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
@@ -27,3 +29,19 @@ jobs:
 
       - name: Run tests
         run: pytest
+
+      - name: Upload Scrapy Log
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: scrapy-test-log
+          path: test-run.log
+
+      - name: Notify Slack on failure
+        if: failure()
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data "{\"text\":\"⚠️ Python tests failed in the GitHub Actions workflow for repository: ${{ github.repository }}. Branch: ${{ github.ref }}. Check the workflow here: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+          ${{ secrets.SLACK_WEBHOOK_URL }}

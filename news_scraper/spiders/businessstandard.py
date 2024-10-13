@@ -31,9 +31,17 @@ class BusinessStandardSpider(SitemapIndexSpider):
         article.add_css("title", "h1.stryhdtp::text")
         article.add_css("description", "h2.strydsc::text")
         article.add_css("author", "span.MainStory_dtlauthinfo__u_CUx span::text")
+        '''
+        Handling different URL structures for scraping based on region-specific variations.
+
+        - For URLs containing "/markets/", we use a specific parent div (parent_top_div) to ensure accurate scraping.
+        - When accessed via an EU proxy, the HTML structure differs, so we handle this by targeting paragraph tags using the XPath `/p/text()`.
+        - For the Indian version of the site, we scrape content from `div` elements to capture the article text.
+        '''
+
         article.add_xpath(
             "article_text",
-            '//div[@id="parent_top_div"]/div/text() | //div[contains(@class, "MainStory_storycontent__Pe3ys") and contains(@class, "storycontent")]/div/text()',
+            '//div[@id="parent_top_div"]/div/text() | //div[contains(@class, "MainStory_storycontent__Pe3ys") and contains(@class, "storycontent")]/p/text() | //div[contains(@class, "MainStory_storycontent__Pe3ys") and contains(@class, "storycontent")]//div/text()',
         )
 
         # dates
