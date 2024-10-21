@@ -41,14 +41,21 @@ class BusinessStandardSpider(SitemapIndexSpider):
 
         article.add_xpath(
             "article_text",
-            '//div[@id="parent_top_div"]/div/text() | //div[contains(@class, "MainStory_storycontent__Pe3ys storycontent")]//p[not(contains(@class, "whtsclick"))]//text() | //div[contains(@class, "MainStory_storycontent__Pe3ys storycontent")]//div/text()',
+            '''
+            //div[@id="parent_top_div"]/div/text() |
+            //div[contains(@class, "MainStory_storycontent__Pe3ys") and contains(@class, "storycontent")]
+            //p[not(contains(@class, "whtsclick") or @id="auto_disclaimer")]/text() |
+            //div[contains(@class, "MainStory_storycontent__Pe3ys") and contains(@class, "storycontent")]//div/text()
+            '''
         )
 
         #paywall
-        if response.css('div.wrapper.subscribe-page'):
-            article.add_value("paywall", "True")
+        paywall_element = response.xpath('//small[contains(text(), "Premium")]').get()
+        if paywall_element:
+            paywall = "True"
         else:
-            article.add_value("paywall", "False")
+            paywall = "False"
+        article.add_value("paywall", paywall)
 
         # dates
         article.add_css(
