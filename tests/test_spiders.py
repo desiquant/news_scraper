@@ -120,7 +120,7 @@ def test_spider_crawl(spider: Spider):
     if os.path.getsize(output_file) == 0:
         pytest.skip(f"No data scraped by {spider.name}, file {output_file} is empty.")
     df = pd.read_csv(output_file)
-    if spider.name in ["economictimes", "ndtvprofit"]:
+    if spider.name in ["economictimes", "ndtvprofit","moneycontrol","businessstandard"]:
         df_normal = df[df["paywall"] == "False"]
         assert df_normal.empty or not df_normal[df_normal["article_text"].str.strip() == ""].empty, "There are non-paywall articles with empty article_text"
 
