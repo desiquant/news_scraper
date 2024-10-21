@@ -24,7 +24,7 @@ class FirstPostSpider(SitemapIndexSpider):
         article.add_css("title", "h1::text")
         article.add_css("description", "span.less-cont::text")
         article.add_css("author", "div.art-dtls-info a::text")
-        article.add_xpath("article_text", '//div[@class="art-content"]/p/text()')
+        article.add_xpath("article_text", '//div[@class="art-content"]/p//text()')
 
         # dates
         article.add_css(

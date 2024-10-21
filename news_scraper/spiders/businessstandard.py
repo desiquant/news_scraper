@@ -41,7 +41,7 @@ class BusinessStandardSpider(SitemapIndexSpider):
 
         article.add_xpath(
             "article_text",
-            '//div[@id="parent_top_div"]/div/text() | //div[contains(@class, "MainStory_storycontent__Pe3ys storycontent")]//p//text() | //div[contains(@class, "MainStory_storycontent__Pe3ys storycontent")]//div/text()',
+            '//div[@id="parent_top_div"]/div/text() | //div[contains(@class, "MainStory_storycontent__Pe3ys storycontent")]//p[not(contains(@class, "whtsclick"))]//text() | //div[contains(@class, "MainStory_storycontent__Pe3ys storycontent")]//div/text()',
         )
 
         #paywall

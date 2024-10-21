@@ -26,8 +26,9 @@ class TheHinduBusinessLineSpider(SitemapIndexSpider):
         article.add_css("description", "h2.bl-sub-text::text")
         article.add_css("author", "div.author-name span::text")
 
-        # TODO: href texts are ignored. include them as well
-        article.add_xpath("article_text", '//div[@itemprop="articleBody"]/p/text()')
+        # TODO: href texts are ignored. include them as well ->Done
+        #'timeline-item' is used to handle livefeed articles
+        article.add_xpath("article_text", '//div[@itemprop="articleBody"]/p//text() | //li[@class="timeline-item"]//h3[@itemprop="headline"]//text() | //li[@class="timeline-item"]//span[@itemprop="articleBody"]//p//text()')
 
         # dates
         article.add_css(
