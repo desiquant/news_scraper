@@ -120,9 +120,9 @@ def test_spider_crawl(spider: Spider):
     if os.path.getsize(output_file) == 0:
         pytest.skip(f"No data scraped by {spider.name}, file {output_file} is empty.")
     df = pd.read_csv(output_file)
-    if spider.name in ["economictimes", "ndtvprofit","moneycontrol","businessstandard"]:
-        df_normal = df[df["paywall"] == "False"]
-        assert df_normal.empty or not df_normal[df_normal["article_text"].str.strip() == ""].empty, "There are non-paywall articles with empty article_text"
+    non_paywall_df = df[df["paywall"] == False]
+    empty_article_text = non_paywall_df[non_paywall_df['article_text'].isnull()]
+    assert empty_article_text.empty, "There are non-paywall articles with empty article_text"
 
     output_cols = set(df.columns)
     required_cols = {
@@ -175,6 +175,7 @@ def test_spider_crawl(spider: Spider):
         "https://www.cnbctv18.com/business/companies/paramount-to-continue-job-cuts-until-skydance-deal-closes-memo-says-19440145.htm",
         "https://www.cnbctv18.com/economy/latest-rbi-klems-data-shows-surprising-jump-in-employment-even-during-pandemic-19440091.htm",
         "https://www.cnbctv18.com/market/godrej-consumer-reports-high-single-digit-organic-volume-growth-in-india-in-q1-19440105.htm",
+        "https://financialexpress.com/business/brandwagon-after-hours-with-rohit-gajbhiye-founder-amp-md-leo1-3645200/",
     ],
 )
 def test_spider_parse(url, snapshot):

@@ -26,6 +26,15 @@ class FinancialExpressSpider(SitemapIndexSpider):
         article.add_css("author", 'meta[itemprop="author"]::attr(content)')
         article.add_xpath("article_text", '//div[@id="pcl-full-content"]/p/text()')
 
+        paywall_element = response.xpath('//span[@class="icons paywall_icon"]/text()').get()
+        paywall_message="Premium"
+        if paywall_element and (paywall_message in paywall_element):
+            paywall = "True"
+        else:
+            paywall = "False"
+        article.add_value("paywall", paywall)
+
+
         # dates
         article.add_css(
             "date_published",

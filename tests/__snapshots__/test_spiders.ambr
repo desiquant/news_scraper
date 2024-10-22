@@ -13,6 +13,20 @@
     }),
   ])
 # ---
+# name: test_spider_parse[https://financialexpress.com/business/brandwagon-after-hours-with-rohit-gajbhiye-founder-amp-md-leo1-3645200/]
+  list([
+    dict({
+      'article_text': '',
+      'author': 'Alokananda Chakraborty',
+      'date_modified': '2024-10-21T09:22:45+05:30',
+      'date_published': '2024-10-21T09:22:45+05:30',
+      'description': 'Gajbhiye shares his focus on youth financial knowledge, weekend activities, and interest in technology and cars.',
+      'paywall': 'True',
+      'title': 'After hours with Rohit Gajbhiye, Founder & MD, LEO1',
+      'url': 'https://www.financialexpress.com/business/brandwagon-after-hours-with-rohit-gajbhiye-founder-amp-md-leo1-3645200/',
+    }),
+  ])
+# ---
 # name: test_spider_parse[https://indianexpress.com/article/business/market/indian-shares-record-high-after-sensex-breaches-80000-mark-9431868/]
   list([
     dict({
@@ -21,7 +35,7 @@
       'date_modified': '2024-07-04T09:51:33+05:30',
       'date_published': '2024-07-04T09:47:06+05:30',
       'description': 'The NSE Nifty 50 was up 0.27% at 24,354.1 points, while the S&P BSE Sensex added 0.29% to 80,214.56 points, hitting record highs, as of 9:26 a.m. IST.',
-      'paywall': None,
+      'paywall': 'False',
       'title': 'Indian shares hit record highs, day after Sensex breached 80,000-mark',
       'url': 'https://indianexpress.com/article/business/market/indian-shares-record-high-after-sensex-breaches-80000-mark-9431868/',
     }),
@@ -147,7 +161,7 @@
       'date_modified': '2024-07-08T22:50:16+05:30',
       'date_published': '2024-07-08T22:50:16+05:30',
       'description': 'Inspections will involve comprehensive visual checks, with affected oxygen generators replaced as needed with new or serviceable units.',
-      'paywall': None,
+      'paywall': 'False',
       'title': 'FAA orders mandatory inspections for 2,600 Boeing 737 planes over oxygen mask safety concerns',
       'url': 'https://www.financialexpress.com/business/airlines-aviation-faa-orders-mandatory-inspections-for-2600-boeing-737-planes-over-oxygen-mask-safety-concerns-3547782/',
     }),
@@ -161,7 +175,7 @@
       'date_modified': '2024-07-10T14:58:38+05:30',
       'date_published': '2024-07-10T14:42:42+05:30',
       'description': 'Finance Minister Nirmala Sitharaman will present the Union Budget for FY25 on July 23. The Budget session will commence on July 22 and conclude on August 12.',
-      'paywall': None,
+      'paywall': 'False',
       'title': 'Will markets crash ahead of Budget, is it right time to book profits?\xa0Check key Nifty levels to watch',
       'url': 'https://www.financialexpress.com/market/will-markets-crash-ahead-of-budget-is-it-the-right-time-to-book-profitsnbsp-check-key-nifty-levels-to-watch-3549556/',
     }),

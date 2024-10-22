@@ -29,6 +29,13 @@ class IndianExpressSpider(SitemapIndexSpider):
             '//div[@id="pcl-full-content"]//p//text() | //div[contains(@class,"ie-premium-content-block")]//p//text()'
         )
 
+        paywall_element = response.xpath('//span[@class="ie-premium"]').get()
+        if paywall_element:
+            paywall = "True"
+        else:
+            paywall = "False"
+        article.add_value("paywall", paywall)
+
         # dates
         article.add_css(
             "date_published",

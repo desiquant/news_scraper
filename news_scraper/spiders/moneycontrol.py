@@ -41,6 +41,7 @@ class MoneyControlSpider(SitemapIndexSpider):
             "article_text",
             (
                 '//div[@id="contentdata"]/p/text() |'
+                '//div[@id="contentdata"]//div[@id="div_app_container"]//p//text() |'
                 #handling livefeed articles
                 '//ul[@class="liveblog_list live-blog liveBlogListInfo"]//li[@class="blog-commmand"]/div/h3[@class="Blue_text"]//text() | '
                 '//ul[@class="liveblog_list live-blog liveBlogListInfo"]//li[@class="blog-commmand"]/div/div[@itemprop="articleBody"]//text()'
