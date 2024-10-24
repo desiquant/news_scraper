@@ -26,7 +26,10 @@ jobs:
           python-version: "3.10"
 
       - name: Install dependencies
-        run: pip install -e .[test]
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential python3-dev # required by netifaces
+          pip install -e .[test]
 
       - name: Run tests
         run: pytest
