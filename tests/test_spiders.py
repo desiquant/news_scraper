@@ -88,7 +88,7 @@ def test_spider_crawl(spider: Spider):
         priority="cmdline",
     )
 
-    if spider.name == "moneycontrol" and bool(os.getenv("PROXY_URL")):
+    if spider.name in ["moneycontrol","businessstandard"] and bool(os.getenv("PROXY_URL")):
         settings.update(
             {
                 "HTTP_PROXY": os.getenv("PROXY_URL"),
