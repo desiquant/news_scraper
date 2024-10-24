@@ -37,11 +37,11 @@ jobs:
           name: scrapy-test-log
           path: test-run.log
 
-      - name: Notify Slack on failure
-        if: failure()
-        env:
-          SLACK_WEBHOOK: ${{ vars.SLACK_WEBHOOK_URL }}
-        run: |
-          curl -X POST -H 'Content-type: application/json' \
-          --data "{\"text\":\"⚠️ Python tests failed in the GitHub Actions workflow for repository: ${{ github.repository }}. Branch: ${{ github.ref }}. Check the workflow here: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
-          ${{ vars.SLACK_WEBHOOK_URL }}
+      # - name: Notify Slack on failure
+      #   if: failure()
+      #   env:
+      #     SLACK_WEBHOOK: ${{ vars.SLACK_WEBHOOK_URL }}
+      #   run: |
+      #     curl -X POST -H 'Content-type: application/json' \
+      #     --data "{\"text\":\"⚠️ Python tests failed in the GitHub Actions workflow for repository: ${{ github.repository }}. Branch: ${{ github.ref }}. Check the workflow here: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+      #     ${{ vars.SLACK_WEBHOOK_URL }}
