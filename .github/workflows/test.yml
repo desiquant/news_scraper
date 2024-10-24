@@ -12,7 +12,8 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
+    runs-on: self-hosted
     env:
       PROXY_URL: ${{ secrets.PROXY_URL }}
     steps:
