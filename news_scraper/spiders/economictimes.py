@@ -37,6 +37,14 @@ class EconomicTimesSpider(SitemapIndexSpider):
             '//div[@class="artText"]/text() | //div[@class="artText"]/a/text()',
         )
 
+        #paywall
+        paywall = "False"
+        paywall_element = response.xpath('//h3[@class="paywall_msg"]/@data-free').get()
+        paywall_message="You are reading ETPrime's exclusive investment ideas"
+        if paywall_element and paywall_message in paywall_element:
+            paywall = "True"
+        article.add_value("paywall", paywall)
+
         # dates
         ld_data = response.css("script[type='application/ld+json']::text")[1].get()
         ld_json = json.loads(ld_data) if ld_data else {}
