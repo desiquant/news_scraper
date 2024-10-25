@@ -30,6 +30,14 @@ class NDTVProfitSpider(SitemapIndexSpider):
             "article_text", '//div[contains(@class,"story-element")]/div/p/text()'
         )
 
+        #paywall
+        paywall = "False"
+        paywall_element = response.xpath('//span[contains(@class, "hard-paywall-m__title__U-0EK")]/text()').get()
+        paywall_message="To continue reading this story"
+        if paywall_element and paywall_message in paywall_element:
+            paywall = "True"
+        article.add_value("paywall", paywall)
+
         # dates
         article.add_css(
             "date_published",

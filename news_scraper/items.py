@@ -25,6 +25,7 @@ class NewsArticleItem(Item):
     scrapy_scraped_at = Field()
     scrapy_parsed_at = Field()
 
+    paywall = Field()
 
 class NewsArticleItemLoader(ItemLoader):
     default_input_processor = MapCompose(str.strip)
