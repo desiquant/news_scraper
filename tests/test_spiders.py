@@ -176,6 +176,8 @@ def test_spider_crawl(spider: Spider):
         "https://www.cnbctv18.com/economy/latest-rbi-klems-data-shows-surprising-jump-in-employment-even-during-pandemic-19440091.htm",
         "https://www.cnbctv18.com/market/godrej-consumer-reports-high-single-digit-organic-volume-growth-in-india-in-q1-19440105.htm",
         "https://financialexpress.com/business/brandwagon-after-hours-with-rohit-gajbhiye-founder-amp-md-leo1-3645200/",
+        "https://economictimes.indiatimes.com/markets/stocks/news/auto-stocks-time-for-a-cool-down-and-also-an-opportunity-6-auto-stocks-with-an-upside-potential-of-up-to-44/articleshow/113926658.cms",
+        "https://www.ndtvprofit.com/business/zomato-q2-earnings-shows-it-is-the-new-treasury-trader-in-town",
     ],
 )
 def test_spider_parse(url, snapshot):

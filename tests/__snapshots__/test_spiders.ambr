@@ -1,4 +1,18 @@
 # serializer version: 1
+# name: test_spider_parse[https://economictimes.indiatimes.com/markets/stocks/news/auto-stocks-time-for-a-cool-down-and-also-an-opportunity-6-auto-stocks-with-an-upside-potential-of-up-to-44/articleshow/113926658.cms]
+  list([
+    dict({
+      'article_text': '',
+      'author': None,
+      'date_modified': 'Oct 04, 2024, 10:27:00 AM IST+05:30',
+      'date_published': 'Oct 04, 2024, 10:27:00 AM IST+05:30',
+      'description': None,
+      'paywall': 'True',
+      'title': 'Auto stocks: Time for a cool down – and also an opportunity? 6 auto stocks with an upside potential of up to 44%',
+      'url': 'https://economictimes.indiatimes.com/markets/stocks/news/auto-stocks-time-for-a-cool-down-and-also-an-opportunity-6-auto-stocks-with-an-upside-potential-of-up-to-44/articleshow/113926658.cms',
+    }),
+  ])
+# ---
 # name: test_spider_parse[https://economictimes.indiatimes.com/markets/stocks/news/it-stocks-in-focus-ahead-of-june-qtr-results-tcs-cyient-top-buy-which-could-give-15-18-return/articleshow/111569297.cms]
   list([
     dict({
@@ -276,6 +290,20 @@
       'paywall': 'False',
       'title': "Trump's G-20 Ends With Few Prizes, Little Consensus on Goals",
       'url': 'https://www.ndtvprofit.com/business/trump-s-g-20-ends-with-few-prizes-little-consensus-on-his-goals',
+    }),
+  ])
+# ---
+# name: test_spider_parse[https://www.ndtvprofit.com/business/zomato-q2-earnings-shows-it-is-the-new-treasury-trader-in-town]
+  list([
+    dict({
+      'article_text': '',
+      'author': 'Sajeet Manghat',
+      'date_modified': '2024-10-23T05:45:56.302Z',
+      'date_published': '2024-10-23T05:32:07.241Z',
+      'description': 'Zomato earned nearly Rs 400 crore as net gains from mutual funds, interest income from government securities, debentures or bonds and interest from bank deposits.',
+      'paywall': 'True',
+      'title': 'Zomato Is The New Treasury Trader In Town',
+      'url': 'https://www.ndtvprofit.com/business/zomato-q2-earnings-shows-it-is-the-new-treasury-trader-in-town',
     }),
   ])
 # ---
