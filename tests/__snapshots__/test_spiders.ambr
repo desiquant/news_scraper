@@ -27,6 +27,20 @@
     }),
   ])
 # ---
+# name: test_spider_parse[https://financialexpress.com/business/brandwagon-after-hours-with-rohit-gajbhiye-founder-amp-md-leo1-3645200/]
+  list([
+    dict({
+      'article_text': '',
+      'author': 'Alokananda Chakraborty',
+      'date_modified': '2024-10-21T09:22:45+05:30',
+      'date_published': '2024-10-21T09:22:45+05:30',
+      'description': 'Gajbhiye shares his focus on youth financial knowledge, weekend activities, and interest in technology and cars.',
+      'paywall': 'True',
+      'title': 'After hours with Rohit Gajbhiye, Founder & MD, LEO1',
+      'url': 'https://www.financialexpress.com/business/brandwagon-after-hours-with-rohit-gajbhiye-founder-amp-md-leo1-3645200/',
+    }),
+  ])
+# ---
 # name: test_spider_parse[https://indianexpress.com/article/business/market/indian-shares-record-high-after-sensex-breaches-80000-mark-9431868/]
   list([
     dict({
@@ -35,7 +49,7 @@
       'date_modified': '2024-07-04T09:51:33+05:30',
       'date_published': '2024-07-04T09:47:06+05:30',
       'description': 'The NSE Nifty 50 was up 0.27% at 24,354.1 points, while the S&P BSE Sensex added 0.29% to 80,214.56 points, hitting record highs, as of 9:26 a.m. IST.',
-      'paywall': None,
+      'paywall': 'False',
       'title': 'Indian shares hit record highs, day after Sensex breached 80,000-mark',
       'url': 'https://indianexpress.com/article/business/market/indian-shares-record-high-after-sensex-breaches-80000-mark-9431868/',
     }),
@@ -49,7 +63,7 @@
       'date_modified': '2022-03-31T22:50:37+05:30',
       'date_published': '2022-03-31T22:44:00+05:30',
       'description': 'The department also found that 10 acres of farm land in Delhi was purchased through a few paper companies',
-      'paywall': None,
+      'paywall': 'True',
       'title': 'Hero MotoCorp tax case: I-T finds Rs 800 cr siphoned off via shell firms',
       'url': 'https://www.business-standard.com/article/companies/hero-motocorp-tax-case-i-t-finds-rs-800-cr-siphoned-off-via-shell-firms-122033101550_1.html',
     }),
@@ -63,7 +77,7 @@
       'date_modified': '2022-03-31T23:43:30+05:30',
       'date_published': '2022-03-31T23:43:00+05:30',
       'description': 'For the current fiscal year till February 25, the non-food credit growth has accelerated to 6.2 per cent against 3.7 per cent for the same period of the last year',
-      'paywall': None,
+      'paywall': 'False',
       'title': 'Non-food credit growth accelerates to 8% in Feb: RBI data',
       'url': 'https://www.business-standard.com/article/economy-policy/non-food-credit-growth-accelerates-to-8-in-feb-rbi-data-122033101465_1.html',
     }),
@@ -77,7 +91,7 @@
       'date_modified': '2024-07-12T14:27:11+05:30',
       'date_published': '2024-07-12T14:01:11+05:30',
       'description': 'In the past one month, the stock of telecom service provider for Indian Railways has rallied 47 per cent after winning multiple orders worth Rs 161 crore.',
-      'paywall': None,
+      'paywall': 'False',
       'title': 'RailTel stock soars 18% on heavy volumes; up 331% in 1 year',
       'url': 'https://www.business-standard.com/markets/news/railtel-stock-soars-18-on-heavy-volumes-up-331-in-1-year-124071200447_1.html',
     }),
@@ -129,7 +143,7 @@
   list([
     dict({
       'article_text': 'The KLEMS data, just released by RBI, is a rich source of many aspects of the economy, including labor employed, capital added, value added, quality of labor, and composition of capital, among others. NSE RBI draws these tables from various sources like the NSO (National Statistical Organisation), NSSO (National Sample Survey) , ASI (Annual Survey of Industry), input-output tables, and PLFS data (Periodic Labour Force Survey). The KLEMS dataset covers data from 1980 to FY24. While economists will take time to decipher trends from this voluminous data set, one issue stands out. The FY24 tables claim that 46.7 million jobs were created in FY24 versus only 19 million in FY23 and 11.9 million in FY22. This kind of job creation doesn’t sqaure with the poor consumption growth of just 4% that the GDP data shows for FY24. What is more bizarre, the data set shows that about 42 million jobs were created in FY20 and 31 million in FY21, though both were COVID years and resulted in huge job losses as restaurants and travel industry shut down completely. Even more surprising, the total jobs in the economy hover between 471 million and 473 million for 6 years between FY12 to FY17 and then start climbing during COVID years starting FY20. Economists who specialise in labour studies say the PLFS data also shows a rise in worker population ratio since COVID, but these are largely self employed and own-family work. Regular wage employment has actually declined since COVID, they said. A brief note on KLEMS: The abbreviation is structured as follows: K stands for Capital, L for Labour, E for Energy, M for Materials, and S for Services. Year Total number of employed persons (in mln) Increase in number of jobs (in mln) 2023-24(prov) 643.3 +46.6 2022-23 596.7 +19.2 2021-22 577.5 +11.9 2020-21 565.6 +31.2 2019-20 534.4 41.8 2018-19 492.6 +17.6 2017-18 475 +1.8 2016-17 473.2 +1.2 2015-16 472.04 +0.58 2014-15 471.46 -0.7 2013-14 471.47 -0.6 2012-13 472.06 +0.5 2011-12 471.6 Also read: RBI data shows far more jobs than indicated by private surveys',
-      'author': 'July 8, 2024, 9:30:31 PM IST',
+      'author': 'Latha Venkatesh',
       'date_modified': '2024-07-08T21:30:31+05:30',
       'date_published': '2024-07-08T20:42:40+05:30',
       'description': 'While economists will take time to decipher trends from this voluminous data set, one issue stands out. The FY24 tables claim that 46.7 million jobs were created in FY24 versus only 19 million in FY23 and 11.9 million in FY22.\xa0 This kind of job creation doesn’t sqaure with the poor consumption growth of just 4% that the GDP data shows for FY24.',
@@ -143,7 +157,7 @@
   list([
     dict({
       'article_text': 'FMCG major Godrej Consumer Products Ltd (GCPL) on Monday (July 8) said it reported a mixed performance across its global operations. Despite challenging operating conditions in India, the company\'s domestic business showed resilience, achieving high-single-digit organic volume growth and mid-single-digit value growth. NSE "Reported growth for India will be in double digits for volume and high-single digits for value , with broad-based contributions from both the Home Care and Personal Care segments," the company said. Demand for household insecticides was initially soft due to extreme heatwaves across the country. However, GCPL\'s Park Avenue and KamaSutra brands have performed well following portfolio simplification actions, aligning with the company\'s full-year growth ambitions. Also Read: Pitti Engineering launches ₹360-crore QIP, issue price at ₹1,054.25 per share The Indonesian business continued its strong performance, recording high-single-digit volume growth and double-digit constant currency sales growth. However, the significant depreciation of the Indonesian currency led to lower growth in INR terms. In the GAUM (Godrej Africa, USA, and Middle East) region, the organic business is expected to see a double-digit volume decline, primarily driven by a high base in Q1 FY24 due to the appointment of a National Distributor, which provided a one-time sell-in benefit. Additionally, difficult pricing decisions in Nigeria and supply disruptions in South Africa, caused by a shipping crisis, further impacted performance. The ongoing currency devaluation in Nigeria continued to negatively affect INR sales. Despite these challenges, GCPL achieved strong double-digit EBITDA growth in INR terms. Also Read: Jupiter Wagons opens QIP today, sets floor price at ₹689.47 per share At a consolidated level, GCPL anticipates flattish INR sales, double-digit constant currency sales growth, and double-digit EBITDA growth (reported). Shares of Godrej Consumer Products Ltd ended at ₹1,425.80, up by ₹51.60, or 3.75% on the BSE.',
-      'author': 'July 8, 2024, 11:39:06 PM IST',
+      'author': 'Jomy Jos Pullokaran',
       'date_modified': '2024-07-08T23:39:06+05:30',
       'date_published': '2024-07-08T23:39:06+05:30',
       'description': 'Shares of Godrej Consumer Products Ltd ended at ₹1,425.80, up by ₹51.60, or 3.75% on the BSE.',
@@ -161,7 +175,7 @@
       'date_modified': '2024-07-08T22:50:16+05:30',
       'date_published': '2024-07-08T22:50:16+05:30',
       'description': 'Inspections will involve comprehensive visual checks, with affected oxygen generators replaced as needed with new or serviceable units.',
-      'paywall': None,
+      'paywall': 'False',
       'title': 'FAA orders mandatory inspections for 2,600 Boeing 737 planes over oxygen mask safety concerns',
       'url': 'https://www.financialexpress.com/business/airlines-aviation-faa-orders-mandatory-inspections-for-2600-boeing-737-planes-over-oxygen-mask-safety-concerns-3547782/',
     }),
@@ -175,7 +189,7 @@
       'date_modified': '2024-07-10T14:58:38+05:30',
       'date_published': '2024-07-10T14:42:42+05:30',
       'description': 'Finance Minister Nirmala Sitharaman will present the Union Budget for FY25 on July 23. The Budget session will commence on July 22 and conclude on August 12.',
-      'paywall': None,
+      'paywall': 'False',
       'title': 'Will markets crash ahead of Budget, is it right time to book profits?\xa0Check key Nifty levels to watch',
       'url': 'https://www.financialexpress.com/market/will-markets-crash-ahead-of-budget-is-it-the-right-time-to-book-profitsnbsp-check-key-nifty-levels-to-watch-3549556/',
     }),
@@ -184,7 +198,7 @@
 # name: test_spider_parse[https://www.firstpost.com/business/rs-147-5-debited-from-your-sbi-account-heres-why-state-bank-of-india-has-done-this-11792501.html]
   list([
     dict({
-      'article_text': 'Credit/debit card charges are levied by the banks on their customers based on the type of card opted for and number of transactions. However, you might have noticed that State Bank of India (SBI) has debited Rs 147.5 from your bank account without you making any transaction. This amount has been deducted from your account under the annual maintenance/service fee for the debit/ATM card used by you. The SBI provides a host of debit cards to its customers and most of them are Classic/Silver/ Contactless/Global debit cards. An amount of Rs 125 is charged by the bank as an annual maintenance fee for these cards. While the charge is Rs 125, SBI deducted Rs 147.5 from your account because a Goods and Services Tax (GST) of 18 per cent is applied on this service fee. Hence, 18 per cent of Rs 125 amounts to Rs 22.5. So, Rs 22.5 is added to Rs 125, resulting in Rs 147.5. Additionally, if you wish to replace or change your debit card, then the bank will levy Rs 300+GST for this service, apart from the service charge. Several types of debit cards are offered by SBI like domestic, international, and co-branded cards. You can apply for a SBI debit card on the basis of your spending requirements. All the debit cards offered by SBI are linked to your bank account, and when you do a transaction via your debit card, the money is deducted directly from your bank account. It’s not just the SBI which charges an annual maintenance fee for the debit/ATM card. Other banks also deduct an annual service fee from their customers’ account. For instance, ICICI Bank charges a joining fee of Rs 499 and an annual charge of the same amount for Coral debit cards. This fee is not charged by the bank for other debit cards. Moreover, ICICI Bank charges Rs 25 for the regeneration of a debit card PIN. This fee is not applied on the requests made via “instapin” at its branches or via customer care using IVR. ICICI Bank debit card holders are charged Rs 25 per transaction for any transaction decline at other bank ATMs or points of sale (PoS) because of insufficient balance in the account.',
+      'article_text': 'Credit/debit card charges are levied by the banks on their customers based on the type of card opted for and number of transactions. However, you might have noticed that State Bank of India (SBI) has debited Rs 147.5 from your bank account without you making any transaction. This amount has been deducted from your account under the annual maintenance/service fee for the debit/ATM card used by you. The SBI provides a host of debit cards to its customers and most of them are Classic/Silver/ Contactless/Global debit cards. An amount of Rs 125 is charged by the bank as an annual maintenance fee for these cards. While the charge is Rs 125, SBI deducted Rs 147.5 from your account because a Goods and Services Tax (GST) of 18 per cent is applied on this service fee. Hence, 18 per cent of Rs 125 amounts to Rs 22.5. So, Rs 22.5 is added to Rs 125, resulting in Rs 147.5. Additionally, if you wish to replace or change your debit card, then the bank will levy Rs 300+GST for this service, apart from the service charge. Several types of debit cards are offered by SBI like domestic, international, and co-branded cards. You can apply for a SBI debit card on the basis of your spending requirements. All the debit cards offered by SBI are linked to your bank account, and when you do a transaction via your debit card, the money is deducted directly from your bank account. It’s not just the SBI which charges an annual maintenance fee for the debit/ATM card. Other banks also deduct an annual service fee from their customers’ account. For instance, ICICI Bank charges a joining fee of Rs 499 and an annual charge of the same amount for Coral debit cards. This fee is not charged by the bank for other debit cards. Moreover, ICICI Bank charges Rs 25 for the regeneration of a debit card PIN. This fee is not applied on the requests made via “instapin” at its branches or via customer care using IVR. ICICI Bank debit card holders are charged Rs 25 per transaction for any transaction decline at other bank ATMs or points of sale (PoS) because of insufficient balance in the account. Read all the Latest News , Trending News , Cricket News , Bollywood News , India News and Entertainment News here. Follow us on Facebook , Twitter and Instagram .',
       'author': 'FP Trending',
       'date_modified': '2022-12-12T12:18:49+05:30',
       'date_published': '2022-12-12T12:18:49+05:30',
@@ -217,7 +231,7 @@
       'date_modified': '2024-07-31T13:41:11+05:30',
       'date_published': '2024-07-31T13:26:09+05:30',
       'description': 'Regarding Ola Electric\'s upcoming IPO, Aggarwal commented, "We wanted to ensure that the pricing was set at a level that would generate significant excitement among investors."',
-      'paywall': None,
+      'paywall': 'False',
       'title': "Ola Electric's Bhavish Aggarwal responds to MapMyIndia’s notice, defends IPO pricing strategy",
       'url': 'https://www.moneycontrol.com/news/business/companies/ola-electrics-bhavish-aggarwal-responds-to-mapmyindias-notice-defends-ipo-pricing-strategy-12783278.html',
     }),
@@ -226,12 +240,12 @@
 # name: test_spider_parse[https://www.moneycontrol.com/news/business/earnings/coal-india-q1-net-profit-rises-4-here-are-10-key-points-12783698.html]
   list([
     dict({
-      'article_text': "Coal India Limited (CIL) on July 31 reported a in the first quarter of financial year 2024-25. State-run CIL’s coal production increased 8 percent year-on-year in the quarter while offtake rose by 6 percent. looks at the key highlights from the company’s first quarter results: -The consolidated net profit of the company came in at Rs 10,943.55 crore for the quarter ended June 30, 2024, from Rs 10,498.39 crore in the year- ago period. -Coal India’s revenue from operations rose 1.3 percent to Rs 36,465 crore in Q1FY25 from Rs 35,983 crore in the year-ago period. -The company's earnings before interest, tax, depreciation, and amortisation (EBITDA) rose 8 percent to Rs 16,308.53 crore in the first quarter of this fiscal year, compared to Rs 15,089.87 crore in the year-ago period. -Total income of the company was up by 2 percent in the quarter at Rs 38,349.21 crore, from Rs 828.18 crore in the same period last year. -The company’s capex was Rs 3,331.44 crore in the quarter, 3 percent higher compared to Rs 3,244.70 crore spent in the last year. -The company said raw coal production was at 189.286 million tonnes during the quarter, up from 175.476 million tonnes in the comparable quarter last year. -Offtake of raw coal stood at 198.5 million tonnes against 186.950 million tonnes in the year-ago quarter. -As on June 30, the company’s net worth stood at Rs 93,739.37 crore, increasing 13 percent from last year. -On May 21, Coal India incorporated Bharat Coal Gasification & Chemicals Limited (BCGCL) as a new subsidiary for the coal gasification business. -CIL started operations of non-coking coal washery with a capacity of 10 MTPA from April 15 at total cost of Rs 398 crore.",
+      'article_text': "Coal India Limited (CIL) on July 31 reported a four percent increase in consolidated net profit in the first quarter of financial year 2024-25. State-run CIL’s coal production increased 8 percent year-on-year in the quarter while offtake rose by 6 percent. looks at the key highlights from the company’s first quarter results: -The consolidated net profit of the company came in at Rs 10,943.55 crore for the quarter ended June 30, 2024, from Rs 10,498.39 crore in the year- ago period. -Coal India’s revenue from operations rose 1.3 percent to Rs 36,465 crore in Q1FY25 from Rs 35,983 crore in the year-ago period. -The company's earnings before interest, tax, depreciation, and amortisation (EBITDA) rose 8 percent to Rs 16,308.53 crore in the first quarter of this fiscal year, compared to Rs 15,089.87 crore in the year-ago period. -Total income of the company was up by 2 percent in the quarter at Rs 38,349.21 crore, from Rs 828.18 crore in the same period last year. -The company’s capex was Rs 3,331.44 crore in the quarter, 3 percent higher compared to Rs 3,244.70 crore spent in the last year. -The company said raw coal production was at 189.286 million tonnes during the quarter, up from 175.476 million tonnes in the comparable quarter last year. -Offtake of raw coal stood at 198.5 million tonnes against 186.950 million tonnes in the year-ago quarter. -As on June 30, the company’s net worth stood at Rs 93,739.37 crore, increasing 13 percent from last year. -On May 21, Coal India incorporated Bharat Coal Gasification & Chemicals Limited (BCGCL) as a new subsidiary for the coal gasification business. -CIL started operations of non-coking coal washery with a capacity of 10 MTPA from April 15 at total cost of Rs 398 crore.",
       'author': 'Moneycontrol News',
       'date_modified': '2024-07-31T22:00:21+05:30',
       'date_published': '2024-07-31T22:00:21+05:30',
       'description': 'Coal India’s revenue from operations rose 1.3 percent to Rs 36,465 crore in Q1FY25 as against Rs 35,983 crore in the year-ago period.',
-      'paywall': None,
+      'paywall': 'False',
       'title': 'Coal India Q1 net profit rises 4%: Here are 10 key points',
       'url': 'https://www.moneycontrol.com/news/business/earnings/coal-india-q1-net-profit-rises-4-here-are-10-key-points-12783698.html',
     }),
@@ -245,7 +259,7 @@
       'date_modified': '2024-07-31T23:45:43+05:30',
       'date_published': '2024-07-31T23:45:43+05:30',
       'description': "Policymakers voted unanimously to maintain the US central bank's benchmark interest rate between 5.25 percent and 5.50 percent",
-      'paywall': None,
+      'paywall': 'False',
       'title': 'US Federal Reserve keeps key lending rate unchanged',
       'url': 'https://www.moneycontrol.com/news/business/economy/us-federal-reserve-keeps-key-lending-rate-unchanged-12783729.html',
     }),
@@ -254,12 +268,12 @@
 # name: test_spider_parse[https://www.moneycontrol.com/news/business/markets/stock-radar-power-grid-aarti-industries-zydus-lifesciences-ge-power-life-insurance-corporation-sula-vineyards-state-bank-of-india-irb-infrastructure-meson-valves-jtl-industries-in-focus-12766424.html]
   list([
     dict({
-      'article_text': "Here's a quick look at the stocks that will be in focus in trade on Thursday, covering quarterly provisional numbers, fund raising, and large deals announced by companies after-market hours on Wednesday. The company has approved borrowing funds of up to Rs 16,000 crore during FY25-26 through domestic bonds. These bonds could be secured, unsecured, non-convertible, non-cumulative, redeemable, taxable, or tax-free bonds under private placement. The company's board has approved a dividend to be paid on or before August 31. The company and its subsidiaries received final approval from the USFDA to market Sacubitril and Valsartan Tablets. This combination drug treats chronic heart failure in adults, reducing the risk of death and hospitalization. The tablets will be manufactured in Ahmedabad, India. The company's board approved the sale and transfer of two undertakings. Its hydro business will be sold to GE Power Electronics (India) Private Limited, while the gas power business will be sold to GE Renewable Energy Technologies Private Limited. Both transactions will be executed as a slump sale. The company has appealed against an Assam state tax order demanding GST of Rs 17.53 crore, interest of Rs 17.61 crore, and a penalty of Rs 1.75 crore for FY 2018-19. Sula Vineyards announced its highest-ever Q1 net revenue. Their own brand's revenue was Rs 104.4 crore, Wine Tourism was Rs 113 crore, and overall net revenue was Rs 129.6 crore. The lender raised Rs 10,000 crores through its sixth infrastructure bond issuance at a coupon rate of 7.36 percent. The proceeds will be used to enhance long-term funding for infrastructure and affordable housing. IRB Infra and IRB Infrastructure Trust reported an increase in toll revenue for June 2024 by 35 percent to Rs 517 crores. In Q1FY25, their combined toll revenue surged to Rs 1,556 crores, a 32 percent rise compared to Rs 1,183 crores in Q1FY24. The company entered into a share purchase agreement with Milindpra Castings Private Limited, a newly incorporated company in the metal casting and foundry industry. Under this agreement, the company will acquire 7,033 shares of Milindpra Castings for a total consideration of Rs 70,330, priced at Rs 10 per share. The company recorded a net profit growth of 21 percent YoY in Q1FY25. Disclaimer:",
+      'article_text': "Here's a quick look at the stocks that will be in focus in trade on Thursday, covering quarterly provisional numbers, fund raising, and large deals announced by companies after-market hours on Wednesday. Power Grid The company has approved borrowing funds of up to Rs 16,000 crore during FY25-26 through domestic bonds. These bonds could be secured, unsecured, non-convertible, non-cumulative, redeemable, taxable, or tax-free bonds under private placement. Aarti Industries The company's board has approved a dividend to be paid on or before August 31. Zydus Lifesciences The company and its subsidiaries received final approval from the USFDA to market Sacubitril and Valsartan Tablets. This combination drug treats chronic heart failure in adults, reducing the risk of death and hospitalization. The tablets will be manufactured in Ahmedabad, India. GE Power The company's board approved the sale and transfer of two undertakings. Its hydro business will be sold to GE Power Electronics (India) Private Limited, while the gas power business will be sold to GE Renewable Energy Technologies Private Limited. Both transactions will be executed as a slump sale. Life Insurance Corporation The company has appealed against an Assam state tax order demanding GST of Rs 17.53 crore, interest of Rs 17.61 crore, and a penalty of Rs 1.75 crore for FY 2018-19. Sula Vineyards Sula Vineyards announced its highest-ever Q1 net revenue. Their own brand's revenue was Rs 104.4 crore, Wine Tourism was Rs 113 crore, and overall net revenue was Rs 129.6 crore. State Bank of India The lender raised Rs 10,000 crores through its sixth infrastructure bond issuance at a coupon rate of 7.36 percent. The proceeds will be used to enhance long-term funding for infrastructure and affordable housing. IRB Infrastructure IRB Infra and IRB Infrastructure Trust reported an increase in toll revenue for June 2024 by 35 percent to Rs 517 crores. In Q1FY25, their combined toll revenue surged to Rs 1,556 crores, a 32 percent rise compared to Rs 1,183 crores in Q1FY24. Meson Valves The company entered into a share purchase agreement with Milindpra Castings Private Limited, a newly incorporated company in the metal casting and foundry industry. Under this agreement, the company will acquire 7,033 shares of Milindpra Castings for a total consideration of Rs 70,330, priced at Rs 10 per share. JTL Industries The company recorded a net profit growth of 21 percent YoY in Q1FY25. Disclaimer:",
       'author': 'Moneycontrol News',
       'date_modified': '2024-07-10T23:28:22+05:30',
       'date_published': '2024-07-10T23:26:58+05:30',
       'description': 'Power Grid, Aarti Industries, Zydus Lifesciences, GE Power, Life Insurance Corporation, Sula Vineyards, State Bank of India, IRB Infrastructure, Meson Valves, JTL Industries in focus on Thursday.',
-      'paywall': None,
+      'paywall': 'False',
       'title': 'Stock radar : Power Grid, Aarti Industries, Zydus Lifesciences in focus',
       'url': 'https://www.moneycontrol.com/news/business/markets/stock-radar-power-grid-aarti-industries-zydus-lifesciences-ge-power-life-insurance-corporation-sula-vineyards-state-bank-of-india-irb-infrastructure-meson-valves-jtl-industries-in-focus-12766424.html',
     }),
@@ -408,7 +422,7 @@
 # name: test_spider_parse[https://www.thehindubusinessline.com/markets/stock-markets/brokerage-views-on-dabur-emkay-global-and-dart-insights/article68380231.ece]
   list([
     dict({
-      'article_text': 'remains a top pick in the Consumer Goods sector for Emkay Global due to its diversified portfolio and strong execution. The company’s focus on rural growth remains firm, with distribution expansion showing robust progress. Dabur’s strategy of expanding the Total Addressable Market (TAM) across brands with well-supported category extensions through distribution and marketing continues to yield positive results. Emkay Global maintains a BUY rating on Dabur, with a target price of ₹700 per share by June 2025, based on a 46x P/E multiple. The brokerage expects Dabur to achieve a compound annual growth rate (CAGR) of 10% in sales and 15 per cent in earnings over FY24-27. Dabur’s topline is expected to grow by 6%, with mid-single-digit volume growth in domestic operations. Gross margin is anticipated to expand by 90 basis points year-on-year (YoY) to 47.5 per cent. EBITDA expansion is expected to be limited to 20 basis points YoY, reaching 19.5%, due to increased spending on advertising and promotion (A&P), which is projected to rise by 18 per cent. DART has a slightly different take on Dabur’s performance. On a consolidated basis, DART assumes approximately 7% revenue growth, aligning with the company’s guidance. Margins are expected to improve YoY to 19.6 per cent. At the current market price, the stock is trading at 43x FY26E EPS. DART currently holds an “Accumulate” rating on Dabur. Both Emkay Global and DART highlight Dabur’s strong position in the Consumer Goods sector, with particular emphasis on rural growth and strategic category extensions. While Emkay Global projects robust long-term growth with a BUY rating, DART provides a more conservative outlook with an accumulate rating, acknowledging steady revenue growth and margin improvements.',
+      'article_text': 'Dabur remains a top pick in the Consumer Goods sector for Emkay Global due to its diversified portfolio and strong execution. The company’s focus on rural growth remains firm, with distribution expansion showing robust progress. Dabur’s strategy of expanding the Total Addressable Market (TAM) across brands with well-supported category extensions through distribution and marketing continues to yield positive results. Emkay Global maintains a BUY rating on Dabur, with a target price of ₹700 per share by June 2025, based on a 46x P/E multiple. The brokerage expects Dabur to achieve a compound annual growth rate (CAGR) of 10% in sales and 15 per cent in earnings over FY24-27. Dabur’s topline is expected to grow by 6%, with mid-single-digit volume growth in domestic operations. Gross margin is anticipated to expand by 90 basis points year-on-year (YoY) to 47.5 per cent. EBITDA expansion is expected to be limited to 20 basis points YoY, reaching 19.5%, due to increased spending on advertising and promotion (A&P), which is projected to rise by 18 per cent. DART has a slightly different take on Dabur’s performance. On a consolidated basis, DART assumes approximately 7% revenue growth, aligning with the company’s guidance. Margins are expected to improve YoY to 19.6 per cent. At the current market price, the stock is trading at 43x FY26E EPS. DART currently holds an “Accumulate” rating on Dabur. Both Emkay Global and DART highlight Dabur’s strong position in the Consumer Goods sector, with particular emphasis on rural growth and strategic category extensions. While Emkay Global projects robust long-term growth with a BUY rating, DART provides a more conservative outlook with an accumulate rating, acknowledging steady revenue growth and margin improvements.',
       'author': 'Team BL',
       'date_modified': '2024-07-08T08:43:59+05:30',
       'date_published': '2024-07-08T08:38:21+05:30',

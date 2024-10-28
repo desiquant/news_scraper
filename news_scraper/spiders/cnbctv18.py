@@ -21,12 +21,20 @@ class CnbcTv18Spider(SitemapIndexSpider):
         
         # Content
         article.add_css("title", "h1.schema-headline-target::text")
-        article.add_css("description", "h2.schema-summary-target::text")
+        article.add_xpath("description", "//*[contains(@class, 'schema-summary-target')]/text()")
         article.add_xpath(
-            "author", "//div[contains(@class, 'narticle-author')]//span[contains(@class, 'nauthor-name')]/span[contains(@class, 'jsx-61453e8285f2673c')]//text()"
+            "author", "//div[contains(@class, 'narticle-author')]//span[contains(@class, 'nauthor-name')]//span[contains(@class, 'jsx-61453e8285f2673c')]//text()"
         )
         article.add_xpath(
-            "article_text", "//div[contains(@class, 'narticle-data')]//div[contains(@class, 'articleWrap')]//text()"
+            "article_text", 
+            (
+                "//div[contains(@class, 'narticle-data')]//div[contains(@class, 'articleWrap')]//text() | "
+                # Extract text from an image gallery
+                "//div[contains(@class, 'imageGallery')]/div[contains(@class, 'photo-article-body')]/div//text() | "
+                 # Extract text from live feed
+                "//div[contains(@class, 'status-timeline-content')]//div[contains(@class, 'content')]//text() | "
+                "//div[contains(@class, 'live_feed_row')]//text()"
+            )
         )
         
         # Dates
