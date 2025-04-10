@@ -88,7 +88,7 @@ def test_spider_crawl(spider: Spider):
         priority="cmdline",
     )
 
-    if spider.name == "moneycontrol" and bool(os.getenv("PROXY_URL")):
+    if spider.name in ["moneycontrol","businessstandard"] and bool(os.getenv("PROXY_URL")):
         settings.update(
             {
                 "HTTP_PROXY": os.getenv("PROXY_URL"),
@@ -120,6 +120,9 @@ def test_spider_crawl(spider: Spider):
     if os.path.getsize(output_file) == 0:
         pytest.skip(f"No data scraped by {spider.name}, file {output_file} is empty.")
     df = pd.read_csv(output_file)
+    non_paywall_df = df[df["paywall"] == False]
+    empty_article_text = non_paywall_df[non_paywall_df['article_text'].isnull()]
+    assert empty_article_text.empty, "There are non-paywall articles with empty article_text"
 
     output_cols = set(df.columns)
     required_cols = {
@@ -132,6 +135,7 @@ def test_spider_crawl(spider: Spider):
         "scrapy_scraped_at",
         "title",
         "url",
+        "paywall",
     }
 
     assert output_cols == required_cols
@@ -171,6 +175,8 @@ def test_spider_crawl(spider: Spider):
         "https://www.cnbctv18.com/business/companies/paramount-to-continue-job-cuts-until-skydance-deal-closes-memo-says-19440145.htm",
         "https://www.cnbctv18.com/economy/latest-rbi-klems-data-shows-surprising-jump-in-employment-even-during-pandemic-19440091.htm",
         "https://www.cnbctv18.com/market/godrej-consumer-reports-high-single-digit-organic-volume-growth-in-india-in-q1-19440105.htm",
+        "https://economictimes.indiatimes.com/markets/stocks/news/auto-stocks-time-for-a-cool-down-and-also-an-opportunity-6-auto-stocks-with-an-upside-potential-of-up-to-44/articleshow/113926658.cms",
+        "https://www.ndtvprofit.com/business/zomato-q2-earnings-shows-it-is-the-new-treasury-trader-in-town",
     ],
 )
 def test_spider_parse(url, snapshot):
@@ -199,5 +205,8 @@ def test_spider_parse(url, snapshot):
 
         if "article_text" in i:
             i["article_text"] = normalize_text(i["article_text"])
+        # Assert that if paywall is "False", article_text should not be empty
+        if i.get("paywall") == "False":
+            assert i["article_text"], f"article_text is empty for {i['url']} with paywall False"
 
     snapshot.assert_match(parsed_json)
